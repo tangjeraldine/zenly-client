@@ -13,12 +13,14 @@
 }
 
 .footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
+  position:fixed;
+  bottom: 0;
+  padding: 2rem;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  background-color: #0B4619;
+  color: white;
 }
 
 .footer a {
