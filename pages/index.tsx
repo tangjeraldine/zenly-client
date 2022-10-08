@@ -24,31 +24,35 @@ const Home: NextPage = () => {
             className='carousel slide'
             data-bs-ride='carousel'>
             <div className='carousel-inner'>
-              <div className='carousel-item'>
+              <div className='carousel-item mx-auto'>
                 <img
                   src='/images/salesbanner1.jpeg'
                   className='d-block w-100'
+                  style={{ width: "800px", height: "400px" }}
                   alt='banner'
                 />
               </div>
-              <div className='carousel-item '>
+              <div className='carousel-item mx-auto'>
                 <img
                   src='/images/salesbanner3.jpeg'
                   className='d-block w-100'
+                  style={{ width: "800px", height: "400px" }}
                   alt='massage'
                 />
               </div>
-              <div className='carousel-item active'>
+              <div className='carousel-item active mx-auto'>
                 <img
                   src='/images/salesbanner2.jpeg'
                   className='d-block w-100'
+                  style={{ width: "800px", height: "400px" }}
                   alt='banner'
                 />
               </div>
-              <div className='carousel-item'>
+              <div className='carousel-item mx-auto'>
                 <img
                   src='/images/salesbanner4.jpeg'
                   className='d-block w-100'
+                  style={{ width: "800px", height: "400px" }}
                   alt='banner'
                 />
               </div>
@@ -87,7 +91,7 @@ const Home: NextPage = () => {
               </a>
               <br />
               or
-              <a href='/login/main'>
+              <a href='/common/products'>
                 <button
                   type='button'
                   className='btn btn-outline-dark'

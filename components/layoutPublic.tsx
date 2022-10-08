@@ -62,23 +62,23 @@ export default function Layout({ children, home }) {
             <div className='offcanvas-body'>
               <ul className='navbar-nav justify-content-end flex-grow-1 pe-3'>
                 <li className='nav-item'>
-                  <a className='nav-link active' aria-current='page' href='#'>
+                  <a className='nav-link active' aria-current='page' href='/'>
                     Home
                   </a>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='#'>
+                  <a className='nav-link' href='/common/story'>
                     The ZenLy Story
                   </a>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='#'>
+                  <a className='nav-link' href='/common/blog'>
                     Blog
                   </a>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='#'>
-                    Our Testimonials
+                  <a className='nav-link' href='/common/testimonials'>
+                    Our Testimonials + FAQs
                   </a>
                 </li>
                 <li className='nav-item dropdown'>
@@ -92,19 +92,19 @@ export default function Layout({ children, home }) {
                   </a>
                   <ul className='dropdown-menu'>
                     <li>
-                      <a className='dropdown-item' href='#'>
+                      <a className='dropdown-item' href='/common/products'>
                         Our Products
                       </a>
                     </li>
                     <li>
-                      <a className='dropdown-item' href='#'>
+                      <a className='dropdown-item' href='/common/services'>
                         Our Services
                       </a>
                     </li>
                   </ul>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='#'>
+                  <a className='nav-link' href='/common/contact'>
                     Contact Us
                   </a>
                 </li>
@@ -114,25 +114,20 @@ export default function Layout({ children, home }) {
         </div>
       </nav>
       <br />
-      <main style={{ paddingTop: "4rem", paddingBottom: "4rem" }}>
+      <main style={{ paddingTop: "4rem", paddingBottom: "5rem" }}>
         {children}
       </main>
       <nav
-        className='navbar fixed-bottom'
+        className='navbar fixed-bottom text-middle'
         style={{
           backgroundColor: "#5BB318",
           color: "white",
-          padding: "2rem",
+          padding: "1rem",
         }}>
-        <a
-          href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          target='_blank'
-          rel='noopener noreferrer'>
+        <h5>
           Powered by{" "}
-          <span className={styles.logo}>
-            <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
-          </span>
-        </a>
+          <Image src='/images/next-js.svg' height={30} width={30} alt='zenly' />
+        </h5>
       </nav>
     </div>
   );

@@ -1,76 +1,95 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/styles.module.css";
+import styles from "../styles/Home.module.css";
+import styles2 from "../styles/styles.module.css";
+import { BsCart4 } from "react-icons/bs";
 import Link from "next/link";
-const name = "Jeraldine";
-export const siteTitle = "Next.js Sample Website";
+import RegisterModal from "./Modals/RegisterModal";
 
 export default function Layout({ children, home }) {
   return (
     <div>
-      <div className={styles.bgWrap}>
+      <Head>
+        <link rel='icon' href='/favicon_zenly.ico' />
+        <meta name='description' content='Welcome back to ZenLy!' />
+      </Head>
+      <div className={styles2.bgWrap}>
         <Image
           alt='zenly'
-          src='/images/wallpaper1.jpg'
+          src='/images/wallpaper3.jpg'
           layout='fill'
           objectFit='cover'
           quality={100}
         />
       </div>
-      <Head>
-        <link rel='icon' href='/favicon.ico' />
-        <meta
-          name='description'
-          content='Learn how to build a personal website using Next.js'
-        />
-        <meta
-          property='og:image'
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
-        <meta name='og:title' content={siteTitle} />
-        <meta name='twitter:card' content='summary_large_image' />
-      </Head>
-      <Link href='/'>
-        <a>{name}</a>
-      </Link>
-      <main>{children}</main>
-      {!home && (
-        <div>
-          <Link href='/'>
-            <a>← Back to home</a>
-          </Link>
+      <nav
+        className='navbar navbar-expand-lg fixed-top'
+        style={{ backgroundColor: "#FF9F29" }}>
+        <div className='container-fluid'>
+          <a className='navbar-brand' href='/'>
+            <img
+              src='/images/icon_pic.png'
+              alt='Logo'
+              width='40'
+              height='35'
+              className='d-inline-block align-text-top'
+            />
+            ZenLy
+          </a>
+          <div id='navbarNav'>
+            <ul className='navbar-nav text-black'>
+              <li className='nav-item'>
+                <a className='nav-link active' href='/member/mainpage'>
+                  Home
+                </a>
+              </li>
+              <li className='nav-item '>
+                <a className='nav-link active' href='/member/sales'>
+                  Shop
+                </a>
+              </li>
+              <li className='nav-item '>
+                <a className='nav-link active' href='/member/myorders'>
+                  Order History
+                </a>
+              </li>
+              <li className='nav-item '>
+                <a className='nav-link active' href='/common/contact'>
+                  Contact
+                </a>
+              </li>
+              <li className='nav-item '>
+                <button
+                  type='button'
+                  className='btn btn-success float-start'
+                  data-bs-toggle='modal'
+                  data-bs-target='#exampleModal'
+                  data-bs-whatever='@mdo'>
+                  <BsCart4 /> My Cart
+                  <span className='badge text-bg-danger'>4</span>
+                </button>{" "}
+                <RegisterModal />
+              </li>
+            </ul>
+          </div>
         </div>
-      )}
-      <div className='dropdown m-3'>
-        <button
-          className='btn btn-secondary dropdown-toggle'
-          style={{ backgroundColor: "#FFCB42" }}
-          type='button'
-          data-bs-toggle='dropdown'
-          id='dropdownMenuButton1'
-          aria-expanded='false'>
-          Dropdown button
-        </button>
-        <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-          <li>
-            <a className='dropdown-item' href='#'>
-              Option 1
-            </a>
-          </li>
-          <li>
-            <a className='dropdown-item' href='#'>
-              Option 2
-            </a>
-          </li>
-          <li>
-            <a className='dropdown-item' href='#'>
-              Option 3
-            </a>
-          </li>
-        </ul>
-      </div>
+      </nav>
+      <br />
+      <main style={{ paddingTop: "4rem", paddingBottom: "5rem" }}>
+        {children}
+      </main>
+      <nav
+        className='navbar fixed-bottom text-middle'
+        style={{
+          backgroundColor: "#5BB318",
+          color: "white",
+          padding: "1rem",
+        }}>
+        <h5>
+          Powered by{" "}
+          <Image src='/images/next-js.svg' height={30} width={30} alt='zenly' />
+        </h5>
+      </nav>
     </div>
   );
 }

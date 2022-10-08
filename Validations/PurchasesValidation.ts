@@ -16,7 +16,7 @@ const PurchasesValidation = yup.object({
   transaction_no: yup
     .string()
     .matches(
-      /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{10,11}$/,
+      /^[A-Za-z0-9_-]*$/,
       {
         excludeEmptyString: true,
       }
