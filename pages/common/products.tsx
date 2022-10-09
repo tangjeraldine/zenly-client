@@ -11,9 +11,8 @@ import {
 } from "react";
 import urlcat from "urlcat";
 import axios from "axios";
-import Link from "next/link";
 
-const SERVER: string = "http://localhost:3000";
+const SERVER: string = "http://localhost:3000/";
 
 type GoodsType = {
   title: string;
@@ -25,11 +24,8 @@ type GoodsType = {
 
 export default function Products() {
   const [products, setProducts] = useState<GoodsType[]>([]);
-  const [one, setOne] = useState<string>("this is a prop");
   useEffect(() => {
-    //get tutor details to see their subjects, class levels, and class types of specific tutor
-    //  const urlTutorDetails = urlcat(SERVER, `/tutor/${user._id}`);
-    const url = urlcat(SERVER, "/allproducts");
+    const url = urlcat(SERVER, "user/allproducts");
     axios
       .get(url)
       .then(({ data }) => {
@@ -60,9 +56,6 @@ export default function Products() {
                 We&apos;ve got some pretty good deals here.
               </button>
             </h2>
-            <Link href={{ pathname: "/common/services", query: one }}>
-              click me
-            </Link>
             <div
               id='panelsStayOpen-collapseOne'
               className='accordion-collapse collapse show'
@@ -81,7 +74,7 @@ export default function Products() {
             </div>
           </div>
         </div>
-        {/* <h1>server is {SERVER}</h1> */}
+
         <div
           className='alert alert-warning alert-dismissible fade show'
           role='alert'>
@@ -98,6 +91,36 @@ export default function Products() {
             className='btn-close'
             data-bs-dismiss='alert'
             aria-label='Close'></button>
+        </div>
+        <div className='card text-center'>
+          <div className='card-header'>
+            <ul className='nav nav-tabs card-header-tabs'>
+              <li className='nav-item'>
+                <a className='nav-link' aria-current='true' href='#'>
+                  Our Services
+                </a>
+              </li>
+              <li className='nav-item'>
+                <a className='nav-link active' href='#'>
+                  Our Products
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className='card-body'>
+            <h5 className='card-title'>Your body deserves a treat.</h5>
+            <p className='card-text'>
+              Your body works hard to get through everyday, and it deserves to
+              be pampered. Our selection of massage and cupping treatments is
+              catered to just that. Whether you&apos;re suffering neck and
+              shoulder pains induced by long hours of computer use, injuries
+              caused by sports, or you want to enhance your child&apos;s overall
+              health, we customise each service to your body condition.
+            </p>
+            <a href='#' className='btn btn-primary'>
+              Log In To View More
+            </a>
+          </div>
         </div>
         {products.map((q, index) => (
           <div key={index}>

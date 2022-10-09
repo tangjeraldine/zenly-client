@@ -1,11 +1,36 @@
 import Layout from "../../components/layoutPublic";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import urlcat from "urlcat";
 import axios from "axios";
 
+const SERVER: string = "http://localhost:3000/";
+
+type GoodsType = {
+  title: string;
+  image_url: string;
+  description: string;
+  good_type: string;
+  price: number;
+};
+
 export default function Services() {
+  const [services, setServices] = useState<GoodsType[]>([]);
+
+  useEffect(() => {
+    const url = urlcat(SERVER, "user/allservices");
+    axios
+      .get(url)
+      .then(({ data }) => {
+        console.log(data);
+        setServices(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <Layout home>
       <Head>
@@ -43,7 +68,7 @@ export default function Services() {
             </div>
           </div>
         </div>
-        <h1>HI THERE BUY SOMETHING</h1>
+
         <div
           className='alert alert-warning alert-dismissible fade show'
           role='alert'>
@@ -66,31 +91,38 @@ export default function Services() {
             <ul className='nav nav-tabs card-header-tabs'>
               <li className='nav-item'>
                 <a className='nav-link active' aria-current='true' href='#'>
-                  Active
+                  Our Services
                 </a>
               </li>
               <li className='nav-item'>
                 <a className='nav-link' href='#'>
-                  Link
+                  Our Products
                 </a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link disabled'>Disabled</a>
               </li>
             </ul>
           </div>
           <div className='card-body'>
-            <h5 className='card-title'>Special title treatment</h5>
+            <h5 className='card-title'>Your body deserves a treat.</h5>
             <p className='card-text'>
-              With supporting text below as a natural lead-in to additional
-              content.
+              Your body works hard to get through everyday, and it deserves to
+              be pampered. Our selection of massage and cupping treatments is
+              catered to just that. Whether you&apos;re suffering neck and
+              shoulder pains induced by long hours of computer use, injuries
+              caused by sports, or you want to enhance your child&apos;s overall
+              health, we customise each service to your body condition.
             </p>
             <a href='#' className='btn btn-primary'>
-              Go somewhere
+              Log In To View More
             </a>
           </div>
         </div>
       </div>
+      {services.map((q, index) => (
+        <div key={index}>
+          <p>{q.title}</p>
+          <img src={q.image_url} alt='image' />
+        </div>
+      ))}
     </Layout>
   );
 }

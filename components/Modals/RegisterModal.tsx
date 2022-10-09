@@ -1,17 +1,34 @@
 import { useState } from "react";
+import Router from "next/router";
 import urlcat from "urlcat";
 import { Field, Formik, Form } from "formik";
 import axios from "axios";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import RegisterValidation from "../../Validations/RegisterValidation";
 
+const SERVER: string = "http://localhost:3000/";
+
 export default function RegisterModal() {
   const [open, setOpen] = useState(false);
+  const [isEmailUnique, setIsEmailUnique] = useState(true);
+  const [isUsernameUnique, setIsUsernameUnique] = useState(true);
   const [registrationSuccessful, setRegistrationSuccessful] = useState(true);
 
-  const handleSignIn = (values: string) => {
-    setRegistrationSuccessful(false);
-    console.log(values);
+  const handleRegisterNew = (values: object) => {
+    // console.log(values);
+    // setRegistrationSuccessful(true);
+    // setIsEmailUnique(true);
+    // setIsUsernameUnique(true);
+    const url = urlcat(SERVER, "/sign/newuser");
+    axios
+      .post(url, values)
+      .then(({ data }) => {
+        setRegistrationSuccessful(true);
+        Router.push("/login/redirect");
+      })
+      .catch((error) => {
+        setRegistrationSuccessful(false);
+      });
   };
 
   const handleToggle = () => {
@@ -53,7 +70,7 @@ export default function RegisterModal() {
                 gender: "",
               }}
               validationSchema={RegisterValidation}
-              onSubmit={(values) => handleSignIn(values)}>
+              onSubmit={(values) => handleRegisterNew(values)}>
               {({
                 handleChange,
                 handleBlur,
@@ -87,7 +104,7 @@ export default function RegisterModal() {
                   </label>
                   <div>
                     <Field
-                      id='email'
+                      id='email1'
                       name='email'
                       type='text'
                       onChange={handleChange}
@@ -106,7 +123,7 @@ export default function RegisterModal() {
                   <div>
                     {" "}
                     <Field
-                      id='password'
+                      id='password1'
                       name='password'
                       type={open === false ? "password" : "text"}
                       onChange={handleChange}

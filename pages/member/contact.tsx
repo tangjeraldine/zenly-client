@@ -1,4 +1,4 @@
-import Layout from "../../components/layoutPublic";
+import Layout from "../../components/layoutLogin";
 import Head from "next/head";
 
 export default function Products() {

@@ -4,7 +4,6 @@ import styles from "../styles/Home.module.css";
 import styles2 from "../styles/styles.module.css";
 import { BsCart4 } from "react-icons/bs";
 import Link from "next/link";
-import RegisterModal from "./Modals/RegisterModal";
 
 export default function Layout({ children, home }) {
   return (
@@ -54,8 +53,13 @@ export default function Layout({ children, home }) {
                 </a>
               </li>
               <li className='nav-item '>
-                <a className='nav-link active' href='/common/contact'>
+                <a className='nav-link active' href='/member/contact'>
                   Contact
+                </a>
+              </li>
+              <li className='nav-item '>
+                <a className='nav-link active' href='/'>
+                  Logout
                 </a>
               </li>
               <li className='nav-item '>
@@ -66,15 +70,14 @@ export default function Layout({ children, home }) {
                   data-bs-target='#exampleModal'
                   data-bs-whatever='@mdo'>
                   <BsCart4 /> My Cart
-                  <span className='badge text-bg-danger'>4</span>
                 </button>{" "}
-                <RegisterModal />
               </li>
             </ul>
           </div>
         </div>
       </nav>
       <br />
+
       <main style={{ paddingTop: "4rem", paddingBottom: "5rem" }}>
         {children}
       </main>

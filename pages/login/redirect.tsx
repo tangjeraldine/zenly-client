@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import Script from "next/script";
 import { useState } from "react";
-import { Field, Formik, Form } from "formik";
 import urlcat from "urlcat";
+import { Field, Formik, Form } from "formik";
 import axios from "axios";
 import parseJwt from "../member/parseJwt";
-import { sign } from "jsonwebtoken";
-import { serialize } from "cookie";
 import Router from "next/router";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import LoginValidation from "../../Validations/LoginValidation";
@@ -33,7 +32,7 @@ export default function FirstPost() {
         if (UserType === 1) {
           Router.push("/member/mainpage");
         } else if (UserType === 2) {
-          Router.push("/admin/mainpage");
+          Router.push("/member/mainpage");
         } else {
           Router.push("/login/redirect");
         }
@@ -63,7 +62,17 @@ export default function FirstPost() {
             alt='zenly'
           />
           <h2>Login</h2>
-          <h5>Welcome back.</h5>
+          <div
+            className='alert alert-warning alert-dismissible fade show'
+            role='alert'>
+            <strong>Hey there!</strong> Please sign in here to confirm your
+            account.
+            <button
+              type='button'
+              className='btn-close'
+              data-bs-dismiss='alert'
+              aria-label='Close'></button>
+          </div>
           <br />
           {/* using formik */}
           <Formik
@@ -88,7 +97,7 @@ export default function FirstPost() {
                 </label>
                 <div>
                   <Field
-                    id='email'
+                    id='email2'
                     name='email'
                     type='text'
                     onChange={handleChange}
@@ -107,13 +116,14 @@ export default function FirstPost() {
                 <div>
                   {" "}
                   <Field
-                    id='password'
+                    id='password2'
                     name='password'
                     type={open === false ? "password" : "text"}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
                     placeholder='Password'
+                    class='w-full mt-2 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm'
                   />
                   {open === false ? (
                     <BsEyeSlashFill onClick={handleToggle} />
@@ -138,7 +148,7 @@ export default function FirstPost() {
                   Sign in
                 </button>
                 <br />
-                {!signInSuccessful && <p>Login failed!</p>}
+                {!signInSuccessful && <p>Sign in failed!</p>}
               </Form>
             )}
           </Formik>

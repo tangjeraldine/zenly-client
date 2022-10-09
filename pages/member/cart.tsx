@@ -7,11 +7,10 @@ const SERVER: string = "http://localhost:3000/";
 
 export default function MemberSales() {
   const [goods, setGoods] = useState([]);
-  const [quantity, setQuantity] = useState<number>(0);
   useEffect(() => {
-    const urlGoods = urlcat(SERVER, `/user/all`);
+    const urlCart = urlcat(SERVER, `/allcartitems/:id`);
     axios
-      .get(urlGoods)
+      .get(urlCart)
       .then(({ data }) => {
         console.log(data);
         setGoods(data);
@@ -20,27 +19,9 @@ export default function MemberSales() {
         console.log(error);
       });
   }, []);
-
-  const handleChange = (e: any) => {
-    setQuantity(e.target.value);
-  };
-
-  const handleAddToCart = () => {
-    const urlGoods = urlcat(SERVER, `/addtocart`);
-    axios
-      .post(urlGoods)
-      .then(({ data }) => {
-        console.log(data);
-        setGoods(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   return (
     <Layout home>
-      <h1>hi</h1>
+      <h1>My Shopping Cart</h1>
       <div className='container'>
         {goods.map((each, index) => (
           <div key={index} className='card w-75 row justify-content-center'>
@@ -58,13 +39,11 @@ export default function MemberSales() {
               <p className='card-text'>{each.description}</p>
               <button
                 type='button'
-                className='btn btn-danger btn-outline-light'
-                onClick={handleAddToCart}>
+                className='btn btn-danger btn-outline-light'>
                 Add to Cart
               </button>
               <span className='badge text-bg-success'>{each.goods_type}</span>
               <br />
-              <input id='number' type='number' onChange={handleChange} />
               <br />
             </div>
           </div>
