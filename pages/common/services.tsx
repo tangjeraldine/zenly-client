@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import urlcat from "urlcat";
 import axios from "axios";
+import Link from "next/link";
 
 const SERVER: string = "http://localhost:3000/";
 
@@ -76,9 +77,9 @@ export default function Services() {
           <br />
           We&apos;re running a promotion that ends on 30 Nov 2022. You should
           REALLY check in on some of these great deals by{" "}
-          <a href='/login/main' className='alert-link'>
+          <Link href='/login/main' className='alert-link'>
             logging in here
-          </a>
+          </Link>
           .
           <button
             type='button'
@@ -95,9 +96,9 @@ export default function Services() {
                 </a>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='/common/products'>
+                <Link className='nav-link' href='/common/products'>
                   Our Products
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

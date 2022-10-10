@@ -13,7 +13,8 @@ import LoginValidation from "../../Validations/LoginValidation";
 import Layout from "../../components/layoutPublic";
 import RegisterModal from "../../components/Modals/RegisterModal";
 
-const SERVER: string = "http://localhost:3000/";
+// const SERVER: string = "http://localhost:3000/";
+const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
 export default function FirstPost() {
   const [open, setOpen] = useState(false);

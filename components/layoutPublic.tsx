@@ -25,7 +25,7 @@ export default function Layout({ children, home }) {
       </div>
       <nav className='navbar fixed-top bg-light'>
         <div className='container-fluid'>
-          <a className='navbar-brand' href='/'>
+          <Link className='navbar-brand' href='/'>
             <img
               src='/images/icon_pic.png'
               alt='Logo'
@@ -34,7 +34,7 @@ export default function Layout({ children, home }) {
               className='d-inline-block align-text-top'
             />
             ZenLy
-          </a>
+          </Link>
           <button
             className='navbar-toggler'
             type='button'
@@ -62,51 +62,54 @@ export default function Layout({ children, home }) {
             <div className='offcanvas-body'>
               <ul className='navbar-nav justify-content-end flex-grow-1 pe-3'>
                 <li className='nav-item'>
-                  <a className='nav-link active' aria-current='page' href='/'>
+                  <Link
+                    className='nav-link active'
+                    aria-current='page'
+                    href='/'>
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='/common/story'>
+                  <Link className='nav-link' href='/common/story'>
                     The ZenLy Story
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='/common/blog'>
+                  <Link className='nav-link' href='/common/blog'>
                     Blog
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='/common/testimonials'>
+                  <Link className='nav-link' href='/common/testimonials'>
                     Our Testimonials + FAQs
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item dropdown'>
-                  <a
+                  <Link
                     className='nav-link dropdown-toggle'
                     href='#'
                     role='button'
                     data-bs-toggle='dropdown'
                     aria-expanded='false'>
                     What We Do
-                  </a>
+                  </Link>
                   <ul className='dropdown-menu'>
                     <li>
-                      <a className='dropdown-item' href='/common/products'>
+                      <Link className='dropdown-item' href='/common/products'>
                         Our Products
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a className='dropdown-item' href='/common/services'>
+                      <Link className='dropdown-item' href='/common/services'>
                         Our Services
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='/common/contact'>
+                  <Link className='nav-link' href='/common/contact'>
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

@@ -82,16 +82,16 @@ const Home: NextPage = () => {
             <main className={styles.main}>
               <h1 className={styles.title}>Welcome to ZenLy!</h1>
               <br />
-              <a href='/login/main'>
+              <Link href='/login/main'>
                 <button
                   type='button'
                   className='btn  btn-outline-dark btn-info'>
                   Log In
                 </button>
-              </a>
+              </Link>
               <br />
               or
-              <a href='/common/products'>
+              <Link href='/common/products'>
                 <button
                   type='button'
                   className='btn btn-outline-dark'
@@ -99,7 +99,7 @@ const Home: NextPage = () => {
                 >
                   View Our Products & Services
                 </button>
-              </a>
+              </Link>
               <br />
               <section>
                 Not a member yet?{" "}

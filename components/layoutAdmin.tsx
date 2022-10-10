@@ -32,7 +32,7 @@ export default function Layout({ children, home }) {
         className='navbar navbar-expand-lg fixed-top'
         style={{ backgroundColor: "#FF9F29" }}>
         <div className='container-fluid'>
-          <a className='navbar-brand' href='/'>
+          <Link className='navbar-brand' href='/'>
             <img
               src='/images/icon_pic.png'
               alt='Logo'
@@ -41,7 +41,7 @@ export default function Layout({ children, home }) {
               className='d-inline-block align-text-top'
             />
             ZenLy
-          </a>
+          </Link>
           <div id='navbarNav'>
             <ul className='navbar-nav text-black'>
               <li className='nav-item'>
@@ -70,9 +70,9 @@ export default function Layout({ children, home }) {
                 </Link>
               </li>
               <li className='nav-item '>
-                <a className='nav-link active' href='/'>
+                <Link className='nav-link active' href='/'>
                   Logout
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -11,6 +11,7 @@ import {
 } from "react";
 import urlcat from "urlcat";
 import axios from "axios";
+import Link from "next/link";
 
 const SERVER: string = "http://localhost:3000/";
 
@@ -74,7 +75,6 @@ export default function Products() {
             </div>
           </div>
         </div>
-
         <div
           className='alert alert-warning alert-dismissible fade show'
           role='alert'>
@@ -82,9 +82,9 @@ export default function Products() {
           <br />
           We&apos;re running a promotion that ends on 30 Nov 2022. You should
           REALLY check in on some of these great deals by{" "}
-          <a href='/login/main' className='alert-link'>
+          <Link href='/login/main' className='alert-link'>
             logging in here
-          </a>
+          </Link>
           .
           <button
             type='button'
@@ -96,12 +96,12 @@ export default function Products() {
           <div className='card-header'>
             <ul className='nav nav-tabs card-header-tabs'>
               <li className='nav-item'>
-                <a
+                <Link
                   className='nav-link'
                   aria-current='true'
                   href='/common/services'>
                   Our Services
-                </a>
+                </Link>
               </li>
               <li className='nav-item'>
                 <a className='nav-link active' href='#'>

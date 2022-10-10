@@ -7,7 +7,8 @@ import { useState, useContext, useEffect } from "react";
 import ErrorPage from "../../components/ErrorPage";
 import CartValidation from "../../Validations/CartValidation";
 
-const SERVER: string = "http://localhost:3000/";
+// const SERVER: string = "http://localhost:3000/";
+const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
 export default function MemberSales() {
   const [goods, setGoods] = useState([] as any[]);

@@ -24,17 +24,19 @@ export default function MemberMain() {
         <div className='row'>
           <div className='col-sm p-3 w-25'>
             <div className='stackParent position-relative'>
-              <img
+              <Image
                 className='stack-Img img-fluid'
                 src='/images/massage2.jpg'
                 alt='side'
+                height={100} 
+                    width={100} 
               />
               <div className='stack-Txt position-absolute top-50 start-50 translate-middle'>
                 <div className='fourWsText stack-Txt-child text-black'>
                   <Image
-                    src='/images/icon_pic.png' // Route of the image file
-                    height={100} // Desired size with correct aspect ratio
-                    width={100} // Desired size with correct aspect ratio
+                    src='/images/icon_pic.png' /
+                    height={100} 
+                    width={100} 
                     alt='zenly'
                   />
                   <h1 className='text-center p-4'>
