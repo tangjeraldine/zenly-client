@@ -1,3 +1,3 @@
 const country = "Austria";
 
-export {};
+export default {};
