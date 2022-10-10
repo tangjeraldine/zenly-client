@@ -104,9 +104,9 @@ export default function Products() {
                 </Link>
               </li>
               <li className='nav-item'>
-                <a className='nav-link active' href='#'>
+                <Link className='nav-link active' href='#'>
                   Our Products
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -120,9 +120,9 @@ export default function Products() {
               caused by sports, or you want to enhance your child&apos;s overall
               health, we customise each service to your body condition.
             </p>
-            <a href='#' className='btn btn-primary'>
+            <Link href='#' className='btn btn-primary'>
               Log In To View More
-            </a>
+            </Link>
           </div>
         </div>
         {products.map((q, index) => (

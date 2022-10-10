@@ -3,8 +3,14 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import styles2 from "../styles/styles.module.css";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-export default function Layout({ children, home }) {
+interface Props {
+  children?: ReactNode;
+  home?: ReactNode;
+}
+
+const Layout: React.FC<Props> = ({ children, home }) => {
   return (
     <div>
       <Head>
@@ -134,4 +140,5 @@ export default function Layout({ children, home }) {
       </nav>
     </div>
   );
-}
+};
+export default Layout;

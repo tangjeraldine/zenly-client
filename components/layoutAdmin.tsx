@@ -5,13 +5,17 @@ import styles2 from "../styles/styles.module.css";
 import Link from "next/link";
 import { BsCart4 } from "react-icons/bs";
 import { AuthContext } from "../components/AuthContext";
-import { useState, useContext } from "react";
+import { useState, useContext, ReactNode } from "react";
 import ErrorPage from "../components/ErrorPage";
 
-export default function Layout({ children, home }) {
-  const { token, setToken, userDetails } = useContext(AuthContext);
-  // if (userDetails?.security_lvl !== 1) {
-  //   return <ErrorPage />;
+interface Props {
+  children?: ReactNode;
+  home?: ReactNode;
+}
+
+const Layout: React.FC<Props> = ({ children, home }) => {
+  const { userDetails } = useContext(AuthContext);
+
   // }
   return (
     <div>
@@ -97,4 +101,5 @@ export default function Layout({ children, home }) {
       </nav>
     </div>
   );
-}
+};
+export default Layout;

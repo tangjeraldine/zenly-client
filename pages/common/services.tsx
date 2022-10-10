@@ -91,9 +91,9 @@ export default function Services() {
           <div className='card-header'>
             <ul className='nav nav-tabs card-header-tabs'>
               <li className='nav-item'>
-                <a className='nav-link active' aria-current='true' href='#'>
+                <Link className='nav-link active' aria-current='true' href='#'>
                   Our Services
-                </a>
+                </Link>
               </li>
               <li className='nav-item'>
                 <Link className='nav-link' href='/common/products'>
@@ -112,9 +112,9 @@ export default function Services() {
               caused by sports, or you want to enhance your child&apos;s overall
               health, we customise each service to your body condition.
             </p>
-            <a href='#' className='btn btn-primary'>
+            <Link href='#' className='btn btn-primary'>
               Log In To View More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

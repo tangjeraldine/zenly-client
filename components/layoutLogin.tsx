@@ -5,9 +5,14 @@ import styles2 from "../styles/styles.module.css";
 import Link from "next/link";
 import { BsCart4 } from "react-icons/bs";
 import { AuthContext } from "./AuthContext";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, ReactNode } from "react";
 
-export default function Layout({ children, home }) {
+interface Props {
+  children?: ReactNode;
+  home?: ReactNode;
+}
+
+const Layout: React.FC<Props> = ({ children, home }) => {
   const { cartArray } = useContext(AuthContext);
   return (
     <div>
@@ -105,4 +110,5 @@ export default function Layout({ children, home }) {
       </nav>
     </div>
   );
-}
+};
+export default Layout;
