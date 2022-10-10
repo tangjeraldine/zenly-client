@@ -28,15 +28,15 @@ export default function MemberMain() {
                 className='stack-Img img-fluid'
                 src='/images/massage2.jpg'
                 alt='side'
-                height={100} 
-                    width={100} 
+                height={100}
+                width={100}
               />
               <div className='stack-Txt position-absolute top-50 start-50 translate-middle'>
                 <div className='fourWsText stack-Txt-child text-black'>
                   <Image
-                    src='/images/icon_pic.png' /
-                    height={100} 
-                    width={100} 
+                    src='/images/icon_pic.png'
+                    height={100}
+                    width={100}
                     alt='zenly'
                   />
                   <h1 className='text-center p-4'>
