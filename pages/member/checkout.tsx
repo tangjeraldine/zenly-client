@@ -3,7 +3,7 @@ import urlcat from "urlcat";
 import axios from "axios";
 import { Field, Formik, Form } from "formik";
 import { AuthContext } from "../../components/AuthContext";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from "react";
 import ErrorPage from "../../components/ErrorPage";
 import CartValidation from "../../Validations/CartValidation";
 
@@ -78,7 +78,7 @@ export default function MemberSales() {
         Hey {name}&apos;s ! Please confirm the items that you&apos;ll be
         purchasing.
       </h1>
-      {cartArray.map((cartitem, index) => (
+      {cartArray.map((cartitem: { quantity: any; Goods_id: any; id: any; image_url: string | undefined; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
         <div className='container' key={index}>
           <Formik
             initialValues={{

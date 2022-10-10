@@ -34,7 +34,7 @@ export default function MemberSales() {
     setQuantity(e.target.value);
   };
 
-  const handleAddToCart = (index: number) => {
+  const handleAddToCart = (index: any) => {
     const id = index;
     const urlGoods = urlcat(SERVER, `/addtocart/:id`);
     axios

@@ -9,7 +9,7 @@ import ErrorPage from "../../components/ErrorPage";
 const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
 export default function MemberSales() {
-  const [goods, setGoods] = useState([]);
+  const [goods, setGoods] = useState([] as any[]);
   const { token, setToken, userDetails } = useContext(AuthContext);
 
   useEffect(() => {
