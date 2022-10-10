@@ -96,7 +96,10 @@ export default function Products() {
           <div className='card-header'>
             <ul className='nav nav-tabs card-header-tabs'>
               <li className='nav-item'>
-                <a className='nav-link' aria-current='true' href='#'>
+                <a
+                  className='nav-link'
+                  aria-current='true'
+                  href='/common/services'>
                   Our Services
                 </a>
               </li>

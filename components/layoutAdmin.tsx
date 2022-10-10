@@ -4,16 +4,20 @@ import styles from "../styles/Home.module.css";
 import styles2 from "../styles/styles.module.css";
 import Link from "next/link";
 import { BsCart4 } from "react-icons/bs";
-import { AuthContext } from "./AuthContext";
-import { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../components/AuthContext";
+import { useState, useContext } from "react";
+import ErrorPage from "../components/ErrorPage";
 
 export default function Layout({ children, home }) {
-  const { cartArray } = useContext(AuthContext);
+  const { token, setToken, userDetails } = useContext(AuthContext);
+  // if (userDetails?.security_lvl !== 1) {
+  //   return <ErrorPage />;
+  // }
   return (
     <div>
       <Head>
         <link rel='icon' href='/favicon_zenly.ico' />
-        <meta name='description' content='Welcome back to ZenLy!' />
+        <meta name='description' content='Welcome back, Admin!' />
       </Head>
       <div className={styles2.bgWrap}>
         <Image
@@ -41,46 +45,34 @@ export default function Layout({ children, home }) {
           <div id='navbarNav'>
             <ul className='navbar-nav text-black'>
               <li className='nav-item'>
-                <Link className='nav-link active' href='/member/mainpage'>
+                <Link className='nav-link active' href='/admin/mainpage'>
                   Home
                 </Link>
               </li>
               <li className='nav-item '>
-                <Link className='nav-link active' href='/member/sales'>
-                  Shop
+                <Link className='nav-link active' href='/admin/viewallorders'>
+                  View All Orders
                 </Link>
               </li>
               <li className='nav-item '>
-                <Link className='nav-link active' href='/member/myorders'>
-                  Order History
+                <Link className='nav-link active' href='/admin/viewallfeedback'>
+                  View All Feedback
                 </Link>
               </li>
               <li className='nav-item '>
-                <Link className='nav-link active' href='/member/contact'>
-                  Contact
+                <Link className='nav-link active' href='/admin/viewallorders'>
+                  Appointments
                 </Link>
               </li>
               <li className='nav-item '>
-                <Link className='nav-link active' href='/member/editprofile'>
-                  Edit Profile
+                <Link className='nav-link active' href='/admin/deleteusers'>
+                  Delete Users
                 </Link>
               </li>
               <li className='nav-item '>
                 <a className='nav-link active' href='/'>
                   Logout
                 </a>
-              </li>
-              <li className='nav-item '>
-                {/* <button
-                  type='button'
-                  className='btn btn-success float-start'
-                  data-bs-toggle='modal'
-                  data-bs-target='#exampleModal'
-                  data-bs-whatever='@mdo'></button>{" "} */}
-                <BsCart4 /> <Link href='/member/cart'>My Cart</Link>
-                <span className='position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle'>
-                  <span className='visually-hidden'>New alerts</span>
-                </span>
               </li>
             </ul>
           </div>

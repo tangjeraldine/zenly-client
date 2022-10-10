@@ -1,13 +1,32 @@
 import Layout from "../../components/layoutLogin";
 import Head from "next/head";
+import { AuthContext } from "../../components/AuthContext";
+import { useState, useContext } from "react";
+import ErrorPage from "../../components/ErrorPage";
 
 export default function Products() {
+  const { userDetails } = useContext(AuthContext);
+  if (userDetails?.security_lvl !== 1) {
+    return <ErrorPage />;
+  }
+  const name = userDetails.full_name.split(" ")[0];
   return (
     <Layout home>
       <Head>
         <title>Contact</title>
       </Head>
-      <h1 className='text-center'>Contact Us!</h1>
+      <h1 className='text-center'>
+        Hey {name}! You&apos; welcome to leave us feebdack!
+      </h1>
+      <h5>
+        Thanks for providing us with your feedback. It is very important to us
+        that we keep providing great service!
+      </h5>
+      <p>
+        All feedback will be stored privately and kept confidential. However, if
+        you tick the checkbox agreeing to allow your feedback to be posted on
+        our testimonials page, your feedback may be published on our site!{" "}
+      </p>
       <div className='container-fluid p-5'>
         <div className='row align-items-center'>
           <div className='col'>

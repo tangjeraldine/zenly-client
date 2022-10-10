@@ -95,7 +95,7 @@ export default function Services() {
                 </a>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='#'>
+                <a className='nav-link' href='/common/products'>
                   Our Products
                 </a>
               </li>

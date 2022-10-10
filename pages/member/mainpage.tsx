@@ -6,10 +6,20 @@ import {
   TikTokEmbed,
   FacebookEmbed,
 } from "react-social-media-embed";
+import { AuthContext } from "../../components/AuthContext";
+import { useState, useContext } from "react";
+import ErrorPage from "../../components/ErrorPage";
 
 export default function MemberMain() {
+  const { userDetails } = useContext(AuthContext);
+  if (userDetails?.security_lvl !== 1) {
+    return <ErrorPage />;
+  }
+  const name = userDetails.full_name.split(" ")[0];
+
   return (
     <Layout home>
+      <h3>Welcome back, {name}</h3>
       <div
         id='carouselExampleDark'
         className='carousel carousel-dark slide p-3'
@@ -98,7 +108,7 @@ export default function MemberMain() {
                     alt='zenly'
                   />
                   <h1 className='text-center p-4'>
-                    Welcome back, <br /> XXX!
+                    Welcome back, <br /> {name}!
                   </h1>
                 </div>
               </div>
@@ -116,16 +126,16 @@ export default function MemberMain() {
                 width='500'
                 height='545'
                 scrolling='no'
-                frameborder='0'
-                allowfullscreen='true'
+                frameBorder={0}
+                allowFullScreen={true}
                 allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'></iframe>
               <iframe
                 src='https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ffeelfreetaichi%2Fposts%2F683143525192263&show_text=true&width=500'
                 width='500'
                 height='551'
                 scrolling='no'
-                frameborder='0'
-                allowfullscreen='true'
+                frameBorder={0}
+                allowFullScreen={true}
                 allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'></iframe>
             </div>
           </div>

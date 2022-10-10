@@ -10,15 +10,9 @@ const SERVER: string = "http://localhost:3000/";
 
 export default function RegisterModal() {
   const [open, setOpen] = useState(false);
-  const [isEmailUnique, setIsEmailUnique] = useState(true);
-  const [isUsernameUnique, setIsUsernameUnique] = useState(true);
   const [registrationSuccessful, setRegistrationSuccessful] = useState(true);
 
   const handleRegisterNew = (values: object) => {
-    // console.log(values);
-    // setRegistrationSuccessful(true);
-    // setIsEmailUnique(true);
-    // setIsUsernameUnique(true);
     const url = urlcat(SERVER, "/sign/newuser");
     axios
       .post(url, values)

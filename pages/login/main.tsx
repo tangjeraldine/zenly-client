@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../components/AuthContext";
 import { Field, Formik, Form } from "formik";
 import urlcat from "urlcat";
 import axios from "axios";
 import parseJwt from "../member/parseJwt";
-import { sign } from "jsonwebtoken";
-import { serialize } from "cookie";
 import Router from "next/router";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import LoginValidation from "../../Validations/LoginValidation";
@@ -19,17 +18,20 @@ const SERVER: string = "http://localhost:3000/";
 export default function FirstPost() {
   const [open, setOpen] = useState(false);
   const [signInSuccessful, setSignInSuccessful] = useState(true);
+  const { token, setToken, userDetails, setUserDetails } =
+    useContext(AuthContext);
 
   const handleLogin = async (values: object) => {
     setSignInSuccessful(true);
-    console.log(values);
     const url = urlcat(SERVER, "sign/login");
     axios
       .post(url, values)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
+        // setToken(parseJwt(data.token).currentUser);
         const UserType = parseJwt(data.token).currentUser.security_lvl;
-        console.log(UserType);
+        const USER = parseJwt(data.token).currentUser;
+        setUserDetails(USER);
         if (UserType === 1) {
           Router.push("/member/mainpage");
         } else if (UserType === 2) {

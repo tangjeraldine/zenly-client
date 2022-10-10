@@ -8,7 +8,8 @@ import ErrorPage from "../../components/ErrorPage";
 const SERVER: string = "http://localhost:3000/";
 
 export default function MemberSales() {
-  const [goods, setGoods] = useState([]);
+  const [goods, setGoods] = useState([] as any[]);
+  const [quantity, setQuantity] = useState<number>(0);
   const { token, setToken, userDetails } = useContext(AuthContext);
 
   useEffect(() => {
@@ -28,11 +29,27 @@ export default function MemberSales() {
     return <ErrorPage />;
   }
 
-  const name = userDetails.full_name.split(" ")[0];
+  const handleChange = (e: any) => {
+    setQuantity(e.target.value);
+  };
+
+  const handleAddToCart = (index: number) => {
+    const id = index;
+    const urlGoods = urlcat(SERVER, `/addtocart/:id`);
+    axios
+      .post(urlGoods)
+      .then(({ data }) => {
+        console.log(data);
+        setGoods(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Layout home>
-      <h1>This is the order history page, {name}</h1>
+      <h1>hi {userDetails?.security_lvl} edit profile</h1>
       <div className='container'>
         {goods.map((each, index) => (
           <div key={index} className='card w-75 row justify-content-center'>
@@ -50,11 +67,13 @@ export default function MemberSales() {
               <p className='card-text'>{each.description}</p>
               <button
                 type='button'
-                className='btn btn-danger btn-outline-light'>
+                className='btn btn-danger btn-outline-light'
+                onClick={(index) => handleAddToCart(index)}>
                 Add to Cart
               </button>
               <span className='badge text-bg-success'>{each.goods_type}</span>
               <br />
+              <input id='number' type='number' onChange={handleChange} />
               <br />
             </div>
           </div>
