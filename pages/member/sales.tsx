@@ -63,95 +63,97 @@ export default function MemberSales() {
   const name = userDetails.full_name.split(" ")[0];
   return (
     <Layout home>
-      <h1>hi {name}</h1>
-      <div className='container'>
-        {goods.map((each, index) => (
-          <div key={index}>
-            <Formik
-              initialValues={{
-                quantity: "",
-                User_id: userDetails.id,
-                Goods_id: index++,
-              }}
-              validationSchema={CartValidation}
-              onSubmit={(values) => handleAddToCart(values)}>
-              {({
-                handleChange,
-                handleBlur,
-                values,
-                errors,
-                touched,
-                initialValues,
-              }) => (
-                <div>
-                  <div
-                    key={index}
-                    className='card w-75 row justify-content-center'>
-                    <img
-                      src={each.image_url}
-                      alt='image'
-                      className='bd-placeholder-img card-img-top'
-                      width='100%'
-                      height='400'
-                    />
-                    <div className='card-body'>
-                      <h4 className='card-title'>{each.title}</h4>
-                      <h5 className='card-text text-muted'>${each.price}</h5>
-                      <hr />
-                      <p className='card-text'>{each.description}</p>
-                      {/* Make it into a modal when you have time */}
-                      <Form>
-                        {" "}
-                        <label htmlFor='Quantity'>
-                          <h5>Quantity</h5>
-                        </label>
-                        <div>
-                          <Field
-                            id='quantity'
-                            name='quantity'
-                            type='number'
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.quantity}
-                            placeholder='0'
-                          />
-                          {errors.quantity && touched.quantity ? (
-                            <div>{errors.quantity}</div>
-                          ) : null}
-                        </div>
-                        <br />
-                        <button
-                          type='submit'
-                          className='btn btn-outline-dark'
-                          style={{ backgroundColor: "#5BB318" }}
-                          disabled={
-                            !(
-                              Object.keys(errors).length === 0 &&
-                              Object.keys(touched).length !== 0
-                            )
-                          }>
-                          Add To Cart
-                        </button>
-                        <br />
-                        {/* {!addedToCart && (
+      <div>
+        <h1>hi {name}</h1>
+        <div className='container'>
+          {goods.map((each, index) => (
+            <div key={index}>
+              <Formik
+                initialValues={{
+                  quantity: "",
+                  User_id: userDetails.id,
+                  Goods_id: index++,
+                }}
+                validationSchema={CartValidation}
+                onSubmit={(values) => handleAddToCart(values)}>
+                {({
+                  handleChange,
+                  handleBlur,
+                  values,
+                  errors,
+                  touched,
+                  initialValues,
+                }) => (
+                  <div>
+                    <div
+                      key={index}
+                      className='card w-75 row justify-content-center'>
+                      <img
+                        src={each.image_url}
+                        alt='image'
+                        className='bd-placeholder-img card-img-top'
+                        width='100%'
+                        height='400'
+                      />
+                      <div className='card-body'>
+                        <h4 className='card-title'>{each.title}</h4>
+                        <h5 className='card-text text-muted'>${each.price}</h5>
+                        <hr />
+                        <p className='card-text'>{each.description}</p>
+                        {/* Make it into a modal when you have time */}
+                        <Form>
+                          {" "}
+                          <label htmlFor='Quantity'>
+                            <h5>Quantity</h5>
+                          </label>
+                          <div>
+                            <Field
+                              id='quantity'
+                              name='quantity'
+                              type='number'
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.quantity}
+                              placeholder='0'
+                            />
+                            {errors.quantity && touched.quantity ? (
+                              <div>{errors.quantity}</div>
+                            ) : null}
+                          </div>
+                          <br />
+                          <button
+                            type='submit'
+                            className='btn btn-outline-dark'
+                            style={{ backgroundColor: "#5BB318" }}
+                            disabled={
+                              !(
+                                Object.keys(errors).length === 0 &&
+                                Object.keys(touched).length !== 0
+                              )
+                            }>
+                            Add To Cart
+                          </button>
+                          <br />
+                          {/* {!addedToCart && (
                           <p>
                             Failed to add to cart. Please try again or check
                             your cart to see if item is already in there!
                           </p>
                         )} */}
-                      </Form>
-                      <span className='badge text-bg-success'>
-                        {each.goods_type}
-                      </span>
-                      <br />
+                        </Form>
+                        <span className='badge text-bg-success'>
+                          {each.goods_type}
+                        </span>
+                        <br />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </Formik>
-          </div>
-        ))}
-        {/* using formik */}
+                )}
+              </Formik>
+            </div>
+          ))}
+          {/* using formik */}
+        </div>
       </div>
     </Layout>
   );

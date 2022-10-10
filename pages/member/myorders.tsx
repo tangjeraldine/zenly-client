@@ -33,33 +33,35 @@ export default function MemberSales() {
 
   return (
     <Layout home>
-      <h1>This is the order history page, {name}</h1>
-      <div className='container'>
-        {goods.map((each, index) => (
-          <div key={index} className='card w-75 row justify-content-center'>
-            <img
-              src={each.image_url}
-              alt='image'
-              className='bd-placeholder-img card-img-top'
-              width='100%'
-              height='400'
-            />
-            <div className='card-body'>
-              <h4 className='card-title'>{each.title}</h4>
-              <h5 className='card-text text-muted'>${each.price}</h5>
-              <hr />
-              <p className='card-text'>{each.description}</p>
-              <button
-                type='button'
-                className='btn btn-danger btn-outline-light'>
-                Add to Cart
-              </button>
-              <span className='badge text-bg-success'>{each.goods_type}</span>
-              <br />
-              <br />
+      <div>
+        <h1>This is the order history page, {name}</h1>
+        <div className='container'>
+          {goods.map((each, index) => (
+            <div key={index} className='card w-75 row justify-content-center'>
+              <img
+                src={each.image_url}
+                alt='image'
+                className='bd-placeholder-img card-img-top'
+                width='100%'
+                height='400'
+              />
+              <div className='card-body'>
+                <h4 className='card-title'>{each.title}</h4>
+                <h5 className='card-text text-muted'>${each.price}</h5>
+                <hr />
+                <p className='card-text'>{each.description}</p>
+                <button
+                  type='button'
+                  className='btn btn-danger btn-outline-light'>
+                  Add to Cart
+                </button>
+                <span className='badge text-bg-success'>{each.goods_type}</span>
+                <br />
+                <br />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Layout>
   );

@@ -6,7 +6,7 @@ import { AuthContext } from "../../components/AuthContext";
 import { Field, Formik, Form } from "formik";
 import urlcat from "urlcat";
 import axios from "axios";
-import parseJwt from "../member/parseJwt";
+import parseJwt from "../../parseJwt";
 import Router from "next/router";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import LoginValidation from "../../Validations/LoginValidation";
@@ -53,8 +53,8 @@ export default function FirstPost() {
   };
 
   return (
-    <div>
-      <Layout home>
+    <Layout home>
+      <div>
         <Head>
           <title>Login to ZenLy</title>
         </Head>
@@ -162,7 +162,7 @@ export default function FirstPost() {
         </div>
 
         <RegisterModal />
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }

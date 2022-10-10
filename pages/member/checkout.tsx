@@ -3,7 +3,16 @@ import urlcat from "urlcat";
 import axios from "axios";
 import { Field, Formik, Form } from "formik";
 import { AuthContext } from "../../components/AuthContext";
-import { useState, useContext, useEffect, JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal } from "react";
+import {
+  useState,
+  useContext,
+  useEffect,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+} from "react";
 import ErrorPage from "../../components/ErrorPage";
 import CartValidation from "../../Validations/CartValidation";
 
@@ -74,98 +83,128 @@ export default function MemberSales() {
 
   return (
     <Layout home>
-      <h1>
-        Hey {name}&apos;s ! Please confirm the items that you&apos;ll be
-        purchasing.
-      </h1>
-      {cartArray.map((cartitem: { quantity: any; Goods_id: any; id: any; image_url: string | undefined; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
-        <div className='container' key={index}>
-          <Formik
-            initialValues={{
-              quantity: cartitem?.quantity,
-              User_id: userDetails.id,
-              Goods_id: cartitem?.Goods_id,
-              cartItem_id: cartitem?.id,
-              // purchase_price: cartitem.price,
-            }}
-            validationSchema={CartValidation}
-            onSubmit={(values) => handleEditCart(values)}
-            onReset={(values) => handleRemoveCartItem(values)}>
-            {({
-              handleChange,
-              handleBlur,
-              values,
-              errors,
-              touched,
-              initialValues,
-            }) => (
-              <div>
-                <div
-                  key={index}
-                  className='card w-75 row justify-content-center'>
-                  <div className='card-body'>
-                    <img
-                      src={cartitem.image_url}
-                      alt='image'
-                      className='bd-placeholder-img card-img-top'
-                      width='100%'
-                      height='400'
-                    />
-
-                    <h4 className='card-title'>Title: {cartitem.title}</h4>
-                    <h5 className='card-text text-muted'>
-                      Price: ${cartitem.price}
-                    </h5>
-                    <hr />
-                    {/* Make it into a modal when you have time */}
-                    <Form>
-                      {" "}
-                      <label htmlFor='Quantity'>
-                        <h5>Quantity</h5>
-                      </label>
-                      <div>
-                        <Field
-                          id='quantity'
-                          name='quantity'
-                          type='number'
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.quantity}
-                          placeholder='0'
-                          min={0}
-                          max={5}
+      <div>
+        <h1>
+          Hey {name}&apos;s ! Please confirm the items that you&apos;ll be
+          purchasing.
+        </h1>
+        {cartArray.map(
+          (
+            cartitem: {
+              quantity: any;
+              Goods_id: any;
+              id: any;
+              image_url: string | undefined;
+              title:
+                | string
+                | number
+                | boolean
+                | ReactElement<any, string | JSXElementConstructor<any>>
+                | ReactFragment
+                | ReactPortal
+                | null
+                | undefined;
+              price:
+                | string
+                | number
+                | boolean
+                | ReactElement<any, string | JSXElementConstructor<any>>
+                | ReactFragment
+                | ReactPortal
+                | null
+                | undefined;
+            },
+            index: Key | null | undefined
+          ) => (
+            <div className='container' key={index}>
+              <Formik
+                initialValues={{
+                  quantity: cartitem?.quantity,
+                  User_id: userDetails.id,
+                  Goods_id: cartitem?.Goods_id,
+                  cartItem_id: cartitem?.id,
+                  // purchase_price: cartitem.price,
+                }}
+                validationSchema={CartValidation}
+                onSubmit={(values) => handleEditCart(values)}
+                onReset={(values) => handleRemoveCartItem(values)}>
+                {({
+                  handleChange,
+                  handleBlur,
+                  values,
+                  errors,
+                  touched,
+                  initialValues,
+                }) => (
+                  <div>
+                    <div
+                      key={index}
+                      className='card w-75 row justify-content-center'>
+                      <div className='card-body'>
+                        <img
+                          src={cartitem.image_url}
+                          alt='image'
+                          className='bd-placeholder-img card-img-top'
+                          width='100%'
+                          height='400'
                         />
-                        {errors.quantity && touched.quantity ? (
-                          <div>{}</div>
-                        ) : null}
+
+                        <h4 className='card-title'>Title: {cartitem.title}</h4>
+                        <h5 className='card-text text-muted'>
+                          Price: ${cartitem.price}
+                        </h5>
+                        <hr />
+                        {/* Make it into a modal when you have time */}
+                        <Form>
+                          {" "}
+                          <label htmlFor='Quantity'>
+                            <h5>Quantity</h5>
+                          </label>
+                          <div>
+                            <Field
+                              id='quantity'
+                              name='quantity'
+                              type='number'
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.quantity}
+                              placeholder='0'
+                              min={0}
+                              max={5}
+                            />
+                            {errors.quantity && touched.quantity ? (
+                              <div>{}</div>
+                            ) : null}
+                          </div>
+                          <br />
+                          <button
+                            type='submit'
+                            className='btn btn-outline-dark'
+                            style={{ backgroundColor: "#5BB318" }}
+                            disabled={
+                              !(
+                                Object.keys(errors).length === 0 &&
+                                Object.keys(touched).length !== 0
+                              )
+                            }>
+                            Update Quantity
+                          </button>
+                          <br />
+                          {!cartEdited && (
+                            <p>Failed to Update quantity. Please try again.</p>
+                          )}
+                          <button type='reset'>Remove Item</button>
+                        </Form>
+                        <br />
                       </div>
-                      <br />
-                      <button
-                        type='submit'
-                        className='btn btn-outline-dark'
-                        style={{ backgroundColor: "#5BB318" }}
-                        disabled={
-                          !(
-                            Object.keys(errors).length === 0 &&
-                            Object.keys(touched).length !== 0
-                          )
-                        }>
-                        Update Quantity
-                      </button>
-                      <br />
-                      {!cartEdited && (
-                        <p>Failed to Update quantity. Please try again.</p>
-                      )}
-                      <button type='reset'>Remove Item</button>
-                    </Form>
-                    <br />
+                    </div>
                   </div>
-                </div>
-              </div>
-            )}
-          </Formik>
-        </div>
-      ))}
+                )}
+              </Formik>
+            </div>
+          )
+        )}
+      </div>
     </Layout>
   );
 }
