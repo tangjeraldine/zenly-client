@@ -89,7 +89,7 @@ export default function FirstPost() {
                 </label>
                 <div>
                   <Field
-                    id='email'
+                    id='email1'
                     name='email'
                     type='text'
                     onChange={handleChange}

@@ -68,7 +68,9 @@ const Layout: React.FC<Props> = ({ children, home }) => {
                 </Link>
               </li>
               <li className='nav-item '>
-                <Link className='nav-link active' href='/member/editprofile'>
+                <Link
+                  className='nav-link active'
+                  href='/member/editaccountdetails'>
                   Edit Profile
                 </Link>
               </li>

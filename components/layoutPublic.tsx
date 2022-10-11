@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import styles2 from "../styles/styles.module.css";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -32,7 +31,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
       <nav className='navbar fixed-top bg-light'>
         <div className='container-fluid'>
           <Link className='navbar-brand' href='/'>
-            <div>
+            <a>
               <img
                 src='/images/icon_pic.png'
                 alt='Logo'
@@ -41,7 +40,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
                 className='d-inline-block align-text-top'
               />
               ZenLy
-            </div>
+            </a>
           </Link>
           <button
             className='navbar-toggler'
@@ -74,49 +73,49 @@ const Layout: React.FC<Props> = ({ children, home }) => {
                     className='nav-link active'
                     aria-current='page'
                     href='/'>
-                    Home
+                    <a>Home</a>
                   </Link>
                 </li>
                 <li className='nav-item'>
                   <Link className='nav-link' href='/common/story'>
-                    The ZenLy Story
+                    <a>The ZenLy Story</a>
                   </Link>
                 </li>
                 <li className='nav-item'>
                   <Link className='nav-link' href='/common/blog'>
-                    Blog
+                    <a>Blog</a>
                   </Link>
                 </li>
                 <li className='nav-item'>
                   <Link className='nav-link' href='/common/testimonials'>
-                    Our Testimonials + FAQs
+                    <a>Our Testimonials + FAQs</a>
                   </Link>
                 </li>
                 <li className='nav-item dropdown'>
-                  <Link
+                  <a
                     className='nav-link dropdown-toggle'
                     href='#'
                     role='button'
                     data-bs-toggle='dropdown'
                     aria-expanded='false'>
                     What We Do
-                  </Link>
+                  </a>
                   <ul className='dropdown-menu'>
                     <li>
                       <Link className='dropdown-item' href='/common/products'>
-                        Our Products
+                        <a>Our Products</a>
                       </Link>
                     </li>
                     <li>
                       <Link className='dropdown-item' href='/common/services'>
-                        Our Services
+                        <a>Our Services</a>
                       </Link>
                     </li>
                   </ul>
                 </li>
                 <li className='nav-item'>
                   <Link className='nav-link' href='/common/contact'>
-                    Contact Us
+                    <a>Contact Us</a>
                   </Link>
                 </li>
               </ul>

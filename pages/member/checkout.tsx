@@ -53,9 +53,9 @@ export default function MemberSales() {
   }
   const name = userDetails.full_name.split(" ")[0];
 
-  let itemTotal = [];
+  let itemTotal = [] as any[];
   for (const item of cartArray) {
-    let itemSum = item.quantity * item.price;
+    let itemSum: number = item.quantity * item.price;
     itemTotal.push(itemSum);
   }
   let Grand_Total = 0;
