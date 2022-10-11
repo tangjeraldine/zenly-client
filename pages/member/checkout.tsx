@@ -60,9 +60,10 @@ export default function MemberSales() {
 
   const handleRemoveCartItem = (values: any) => {
     console.log(values);
+    const cartItemID: number = values?.cartItem_id;
     const urlDeleteFromCart = urlcat(
       SERVER,
-      `user/removecartitem/${values.cartItem_id}`
+      `user/removecartitem/${cartItemID}`
     );
     axios
       .delete(urlDeleteFromCart)
