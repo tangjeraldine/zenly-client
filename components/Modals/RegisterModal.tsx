@@ -74,7 +74,6 @@ export default function RegisterModal() {
                 initialValues,
               }) => (
                 <Form>
-                  {" "}
                   <label htmlFor='Full Name'>
                     <h5>Full Name</h5>
                   </label>
@@ -115,7 +114,6 @@ export default function RegisterModal() {
                     <h5>Password</h5>
                   </label>
                   <div>
-                    {" "}
                     <Field
                       id='password1'
                       name='password'

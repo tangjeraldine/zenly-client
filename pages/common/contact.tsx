@@ -1,5 +1,6 @@
 import Layout from "../../components/layoutPublic";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Products() {
   return (
@@ -12,8 +13,10 @@ export default function Products() {
         <div className='container-fluid p-5'>
           <div className='row align-items-center'>
             <div className='col'>
-              <img
+              <Image
                 src='/images/sidepic1.jpg'
+                height={400}
+                width={280}
                 alt='sideimage'
                 className='img-fluid'
               />
@@ -39,7 +42,7 @@ export default function Products() {
               </p>
               <p style={{ color: "red" }}>
                 For purchase of guasha tools and lumbar pillows, please contact
-                us to arrange for your preferred mode of delivery or collection!{" "}
+                us to arrange for your preferred mode of delivery or collection!
               </p>
             </div>
           </div>

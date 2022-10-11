@@ -85,7 +85,6 @@ export default function FirstPost() {
               initialValues,
             }) => (
               <Form>
-                {" "}
                 <label htmlFor='Email'>
                   <h5>Email</h5>
                 </label>
@@ -108,7 +107,6 @@ export default function FirstPost() {
                   <h5>Password</h5>
                 </label>
                 <div>
-                  {" "}
                   <Field
                     id='password'
                     name='password'

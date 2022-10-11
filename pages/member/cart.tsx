@@ -86,7 +86,7 @@ export default function MemberSales() {
     <Layout home>
       <div>
         <h1>
-          {name}&apos;s Shopping Cart: You have a total of {cartArray.length}{" "}
+          {name}&apos;s Shopping Cart: You have a total of {cartArray.length}
           item(s)
         </h1>
         <Link href='/member/checkout'>Take Me To Checkout</Link>
@@ -158,7 +158,6 @@ export default function MemberSales() {
                         <hr />
                         {/* Make it into a modal when you have time */}
                         <Form>
-                          {" "}
                           <label htmlFor='Quantity'>
                             <h5>Quantity</h5>
                           </label>

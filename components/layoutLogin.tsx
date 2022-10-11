@@ -81,7 +81,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
                   className='btn btn-success float-start'
                   data-bs-toggle='modal'
                   data-bs-target='#exampleModal'
-                  data-bs-whatever='@mdo'></button>{" "} */}
+                  data-bs-whatever='@mdo'></button> */}
                 <BsCart4 /> <Link href='/member/cart'>My Cart</Link>
                 <span className='position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle'>
                   <span className='visually-hidden'>New alerts</span>
@@ -104,7 +104,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
           padding: "1rem",
         }}>
         <h5>
-          Powered by{" "}
+          Powered by
           <Image src='/images/next-js.svg' height={30} width={30} alt='zenly' />
         </h5>
       </nav>

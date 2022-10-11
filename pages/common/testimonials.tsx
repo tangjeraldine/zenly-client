@@ -32,7 +32,7 @@ export default function Products() {
                   Cupping is a type of alternative therapy that involves placing
                   cups on the skin to create suction. This suction is thought to
                   improve the flow of energy in the body and facilitate healing.
-                </strong>{" "}
+                </strong>
                 Proponents believe the suction helps facilitate the flow of “qi”
                 in the body. Qi is a Chinese word meaning life force. Many
                 believe that cupping helps balance yin and yang, or the negative
@@ -98,12 +98,12 @@ export default function Products() {
                   TCM treatment for pediatric disorders is safe, painless and
                   free of side effect. It is effective for symptom relief and
                   immune strengthening.
-                </strong>{" "}
-                TuiNa can stimulate a child’s immunity and, in turn, achieve
-                great results. Physiology, pathology and acupoints specific to
-                pediatric patients dictate gentler manual techniques and
-                atypical therapeutic frequency and duration. TuiNa can also be
-                applied to infant who cannot tolerate Chinese herbal medicine
+                </strong>
+                TuiNa can stimulate a child&apos;s immunity and, in turn,
+                achieve great results. Physiology, pathology and acupoints
+                specific to pediatric patients dictate gentler manual techniques
+                and atypical therapeutic frequency and duration. TuiNa can also
+                be applied to infant who cannot tolerate Chinese herbal medicine
                 yet. Pediatric TuiNa can treat many conditions, such as
                 diarrhea, vomiting, constipation, influenza, asthma, bronchial
                 pneumonia etc.

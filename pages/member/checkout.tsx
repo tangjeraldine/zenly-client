@@ -156,7 +156,6 @@ export default function MemberSales() {
                         <hr />
                         {/* Make it into a modal when you have time */}
                         <Form>
-                          {" "}
                           <label htmlFor='Quantity'>
                             <h5>Quantity</h5>
                           </label>

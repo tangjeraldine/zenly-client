@@ -82,16 +82,16 @@ const Home: NextPage = () => {
             <main className={styles.main}>
               <h1 className={styles.title}>Welcome to ZenLy!</h1>
               <br />
-              <Link href='/login/main'>
+              <a href='/login/main'>
                 <button
                   type='button'
                   className='btn  btn-outline-dark btn-info'>
                   Log In
                 </button>
-              </Link>
+              </a>
               <br />
               or
-              <Link href='/common/products'>
+              <a href='/common/products'>
                 <button
                   type='button'
                   className='btn btn-outline-dark'
@@ -99,10 +99,10 @@ const Home: NextPage = () => {
                 >
                   View Our Products & Services
                 </button>
-              </Link>
+              </a>
               <br />
               <section>
-                Not a member yet?{" "}
+                Not a member yet?
                 <button
                   type='button'
                   className='btn btn-link'
@@ -110,7 +110,7 @@ const Home: NextPage = () => {
                   data-bs-target='#exampleModal'
                   data-bs-whatever='@mdo'>
                   Register a new account
-                </button>{" "}
+                </button>
                 with us.
               </section>
               <RegisterModal />

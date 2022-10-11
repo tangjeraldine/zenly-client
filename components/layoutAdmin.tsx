@@ -95,7 +95,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
           padding: "1rem",
         }}>
         <h5>
-          Powered by{" "}
+          Powered by
           <Image src='/images/next-js.svg' height={30} width={30} alt='zenly' />
         </h5>
       </nav>

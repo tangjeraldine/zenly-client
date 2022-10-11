@@ -26,7 +26,7 @@ export default function Products() {
         <p>
           All feedback will be stored privately and kept confidential. However,
           if you tick the checkbox agreeing to allow your feedback to be posted
-          on our testimonials page, your feedback may be published on our site!{" "}
+          on our testimonials page, your feedback may be published on our site!
         </p>
         <div className='container-fluid p-5'>
           <div className='row align-items-center'>
@@ -58,7 +58,7 @@ export default function Products() {
               </p>
               <p style={{ color: "red" }}>
                 For purchase of guasha tools and lumbar pillows, please contact
-                us to arrange for your preferred mode of delivery or collection!{" "}
+                us to arrange for your preferred mode of delivery or collection!
               </p>
             </div>
           </div>

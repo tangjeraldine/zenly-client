@@ -25,7 +25,7 @@ export default function Products() {
                 Back in 2011 when ZenLy&apos;s founder, Bobby, was just a
                 student in NTU&apos;s Chinese Medicine and Biomedical Science
                 course, he discovered his passion for applying alternative
-                medicine principles to massage treatments.{" "}
+                medicine principles to massage treatments.
               </p>
               <br />
               <p>
@@ -33,7 +33,7 @@ export default function Products() {
                 Hospital for 2 years under various reputable Chinese Medicine
                 massage therapists and physicians. He converted his career fully
                 into becoming a massage therapist by earning further
-                accreditations at the Soha Institute.{" "}
+                accreditations at the Soha Institute.
               </p>
               <br />
               <p>

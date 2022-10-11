@@ -32,14 +32,16 @@ const Layout: React.FC<Props> = ({ children, home }) => {
       <nav className='navbar fixed-top bg-light'>
         <div className='container-fluid'>
           <Link className='navbar-brand' href='/'>
-            <img
-              src='/images/icon_pic.png'
-              alt='Logo'
-              width='40'
-              height='35'
-              className='d-inline-block align-text-top'
-            />
-            ZenLy
+            <div>
+              <img
+                src='/images/icon_pic.png'
+                alt='Logo'
+                width='40'
+                height='35'
+                className='d-inline-block align-text-top'
+              />
+              ZenLy
+            </div>
           </Link>
           <button
             className='navbar-toggler'
@@ -134,7 +136,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
           padding: "1rem",
         }}>
         <h5>
-          Powered by{" "}
+          Powered by
           <Image src='/images/next-js.svg' height={30} width={30} alt='zenly' />
         </h5>
       </nav>

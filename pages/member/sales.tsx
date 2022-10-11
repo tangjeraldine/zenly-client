@@ -102,7 +102,6 @@ export default function MemberSales() {
                         <p className='card-text'>{each.description}</p>
                         {/* Make it into a modal when you have time */}
                         <Form>
-                          {" "}
                           <label htmlFor='Quantity'>
                             <h5>Quantity</h5>
                           </label>
