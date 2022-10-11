@@ -23,7 +23,7 @@ export default function MemberSales() {
     axios
       .get(urlGoods)
       .then(({ data }) => {
-        // console.log(data);
+        console.log(data);
         setGoods(data);
       })
       .catch((error) => {
@@ -45,13 +45,12 @@ export default function MemberSales() {
     axios
       .post(urlCart, values)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         setAddedToCart(true);
         alert("Item added to cart!");
       })
       .catch((error) => {
-        if (error.response.data.msg === "Item already exists in cart")
-          console.log(error);
+        console.log(error);
         console.log("Item already exists in cart");
         setAddedToCart(false);
         alert(
@@ -72,7 +71,7 @@ export default function MemberSales() {
                 initialValues={{
                   quantity: "",
                   User_id: userDetails.id,
-                  Goods_id: index++,
+                  Goods_id: each.id,
                 }}
                 validationSchema={CartValidation}
                 onSubmit={(values) => handleAddToCart(values)}>

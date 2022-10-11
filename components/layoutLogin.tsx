@@ -34,14 +34,16 @@ const Layout: React.FC<Props> = ({ children, home }) => {
         style={{ backgroundColor: "#FF9F29" }}>
         <div className='container-fluid'>
           <Link className='navbar-brand' href='/'>
-            <img
-              src='/images/icon_pic.png'
-              alt='Logo'
-              width='40'
-              height='35'
-              className='d-inline-block align-text-top'
-            />
-            ZenLy
+            <a>
+              <Image
+                src='/images/icon_pic.png'
+                alt='Logo'
+                width='40'
+                height='35'
+                className='d-inline-block align-text-top'
+              />
+              ZenLy
+            </a>
           </Link>
           <div id='navbarNav'>
             <ul className='navbar-nav text-black'>

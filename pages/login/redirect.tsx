@@ -19,25 +19,23 @@ const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 export default function FirstPost() {
   const [open, setOpen] = useState(false);
   const [signInSuccessful, setSignInSuccessful] = useState(true);
-  const { token, setToken, userDetails, setUserDetails } =
-    useContext(AuthContext);
+  const { setUserDetails } = useContext(AuthContext);
 
   const handleLogin = async (values: object) => {
     setSignInSuccessful(true);
-
     const url = urlcat(SERVER, "sign/login");
     axios
       .post(url, values)
       .then(({ data }) => {
         // console.log(data);
-        setToken(parseJwt(data.token).currentUser);
+        // setToken(parseJwt(data.token).currentUser);
         const UserType = parseJwt(data.token).currentUser.security_lvl;
         const USER = parseJwt(data.token).currentUser;
         setUserDetails(USER);
         if (UserType === 1) {
           Router.push("/member/mainpage");
         } else if (UserType === 2) {
-          Router.push("/member/mainpage");
+          Router.push("/admin/mainpage");
         } else {
           Router.push("/login/redirect");
         }

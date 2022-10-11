@@ -14,16 +14,27 @@ import {
   ReactPortal,
 } from "react";
 import ErrorPage from "../../components/ErrorPage";
-import CartValidation from "../../Validations/CartValidation";
+import Link from "next/link";
+import Image from "next/image";
+import PurchasesValidation from "../../Validations/PurchasesValidation";
+import TransactionNoValidation from "../../Validations/TransactionNoValidation";
 
 // const SERVER: string = "http://localhost:3000/";
 const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
+type CartType = {
+  quantity: number;
+  Goods_id: number;
+  id: number;
+  image_url: string;
+  title: string;
+  price: number;
+};
+
 export default function MemberSales() {
   const { userDetails, cartArray, setCartArray } = useContext(AuthContext);
-
-  const [cartEdited, setCartEdited] = useState(true);
-  const userID = userDetails.id;
+  const [addToPurchases, setAddedToPurchases] = useState<any>(null);
+  const userID = userDetails?.id;
 
   useEffect(() => {
     const urlViewMyCart = urlcat(SERVER, `user/allcartitems/${userID}`);
@@ -42,93 +53,63 @@ export default function MemberSales() {
   }
   const name = userDetails.full_name.split(" ")[0];
 
-  //?add an edit cart quantity PUT route backend
-  const handleEditCart = (values: object) => {
-    // console.log(values);
-    const urlCart = urlcat(SERVER, `user/edititemquantity/`);
-    axios
-      .put(urlCart, values)
-      .then(({ data }) => {
-        // console.log(data);
-        setCartEdited(true);
-      })
-      .catch((error) => {
-        // console.log(error);
-        setCartEdited(false);
-      });
-  };
+  let itemTotal = [];
+  for (const item of cartArray) {
+    let itemSum = item.quantity * item.price;
+    itemTotal.push(itemSum);
+  }
+  let Grand_Total = 0;
+  const grand_totalReducer = itemTotal.reduce(
+    (prevVal, currVal) => prevVal + currVal,
+    Grand_Total
+  );
+  // console.log(grand_totalReducer);
 
-  const handleRemoveCartItem = (values: any) => {
+  //? POST entire array of cart items together with grand_total
+  const handleAddToPurchasedList = (values: object) => {
     console.log(values);
-    const cartItemID: number = values?.cartItem_id;
-    const urlDeleteFromCart = urlcat(
-      SERVER,
-      `user/removecartitem/${cartItemID}`
-    );
+    const urlAddToPurchase = urlcat(SERVER, `user/addtopurchases/`);
     axios
-      .delete(urlDeleteFromCart)
+      .post(urlAddToPurchase, values)
       .then(({ data }) => {
-        // console.log(data);
-        alert("Item deleted!");
-
-        // setCartEdited(true);
+        console.log(data);
+        setAddedToPurchases(true);
+        alert("We've received your order!");
       })
       .catch((error) => {
-        // console.log(error);
-        if (error.response.data.msg === "Item not deleted") {
-          alert("Item was not deleted. Please try again later.");
-        }
-        // setCartEdited(false);
+        console.log(error);
+        setAddedToPurchases(false);
       });
   };
 
   return (
     <Layout home>
       <div>
-        <h1>
-          Hey {name}&apos;s ! Please confirm the items that you&apos;ll be
-          purchasing.
-        </h1>
-        {cartArray.map(
-          (
-            cartitem: {
-              quantity: any;
-              Goods_id: any;
-              id: any;
-              image_url: string | undefined;
-              title:
-                | string
-                | number
-                | boolean
-                | ReactElement<any, string | JSXElementConstructor<any>>
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
-              price:
-                | string
-                | number
-                | boolean
-                | ReactElement<any, string | JSXElementConstructor<any>>
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
-            },
-            index: Key | null | undefined
-          ) => (
-            <div className='container' key={index}>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-sm'>
+              <h1>
+                Hey {name}, you have altogether {cartArray.length}
+                item(s) to check out.
+              </h1>
+              <br />
+              <h3>The grand total to pay is: SGD ${grand_totalReducer}</h3>
+              <hr />
+              <h5>PLEASE READ THE FOLLOWING BEFORE PROCEEDING:</h5>
+              <p>
+                Please make a payment of **INSERT GRANT TOTAL** via the PayNow
+                QR code shown below, and provide us with the payment transaction
+                number in the field below.
+              </p>
               <Formik
                 initialValues={{
-                  quantity: cartitem?.quantity,
-                  User_id: userDetails.id,
-                  Goods_id: cartitem?.Goods_id,
-                  cartItem_id: cartitem?.id,
-                  // purchase_price: cartitem.price,
+                  transaction_no: "",
+                  checkedOutItems: cartArray,
+                  grand_total: grand_totalReducer,
+                  User_id: userDetails?.id,
                 }}
-                validationSchema={CartValidation}
-                onSubmit={(values) => handleEditCart(values)}
-                onReset={(values) => handleRemoveCartItem(values)}>
+                validationSchema={TransactionNoValidation}
+                onSubmit={(values) => handleAddToPurchasedList(values)}>
                 {({
                   handleChange,
                   handleBlur,
@@ -138,62 +119,40 @@ export default function MemberSales() {
                   initialValues,
                 }) => (
                   <div>
-                    <div
-                      key={index}
-                      className='card w-75 row justify-content-center'>
+                    <div className='card w-75 row justify-content-center'>
                       <div className='card-body'>
-                        <img
-                          src={cartitem.image_url}
-                          alt='image'
-                          className='bd-placeholder-img card-img-top'
-                          width='100%'
-                          height='400'
-                        />
-
-                        <h4 className='card-title'>Title: {cartitem.title}</h4>
-                        <h5 className='card-text text-muted'>
-                          Price: ${cartitem.price}
-                        </h5>
-                        <hr />
-                        {/* Make it into a modal when you have time */}
                         <Form>
-                          <label htmlFor='Quantity'>
-                            <h5>Quantity</h5>
+                          <label htmlFor='transaction_no'>
+                            <h5>Your PayNow Reference No.:</h5>
                           </label>
                           <div>
                             <Field
-                              id='quantity'
-                              name='quantity'
-                              type='number'
+                              id='transaction_no'
+                              name='transaction_no'
+                              type='text'
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              value={values.quantity}
-                              placeholder='0'
-                              min={0}
-                              max={5}
+                              value={values.transaction_no}
+                              placeholder='e.g. MB1234567890C99'
                             />
-                            {errors.quantity && touched.quantity ? (
-                              <div>{}</div>
+                            {errors.transaction_no && touched.transaction_no ? (
+                              <div>{errors.transaction_no}</div>
                             ) : null}
                           </div>
                           <br />
                           <button
                             type='submit'
                             className='btn btn-outline-dark'
-                            style={{ backgroundColor: "#5BB318" }}
+                            style={{ backgroundColor: "#FD841F" }}
                             disabled={
                               !(
                                 Object.keys(errors).length === 0 &&
                                 Object.keys(touched).length !== 0
                               )
                             }>
-                            Update Quantity
+                            Check Out Cart
                           </button>
                           <br />
-                          {!cartEdited && (
-                            <p>Failed to Update quantity. Please try again.</p>
-                          )}
-                          <button type='reset'>Remove Item</button>
                         </Form>
                         <br />
                       </div>
@@ -201,9 +160,49 @@ export default function MemberSales() {
                   </div>
                 )}
               </Formik>
+              <p>
+                Do note that we only accept payment by PayNow at this time. Our
+                team will need to verify your payment by transaction number and
+                your date of purchase. We will not be able to proceed with item
+                collection or honour any appointment bookings until full payment
+                has been confirmed.
+              </p>
+              <p>
+                Once we have confirmed receipt of your payment, we will update
+                your order status and be in touch with you to discuss collection
+                or timeslot bookings!
+              </p>
+              <p>
+                For other enquiries, do drop us a message by WhatsApp or WeChat,
+                and we will reply you within 1 business day.
+              </p>
+              <Link href='/member/cart'>Click here to return to cart</Link>
             </div>
-          )
-        )}
+            <div className='col-sm w-25'>
+              <Image
+                src='/images/qrcode.png'
+                height={400}
+                width={400}
+                alt='zenly'
+              />{" "}
+              <hr />
+              {addToPurchases === null || addToPurchases === false ? (
+                cartArray.map((cartitem: CartType, index: number) => (
+                  <div className='container' key={index}>
+                    <img src={cartitem.image_url} alt={cartitem.image_url} />
+                    <h5>Title: {cartitem.title}</h5>
+                    <h5>Price: ${cartitem.price}</h5>
+                    <h5>Quantity: {cartitem.quantity}</h5>
+                    <h3>Item Total: ${cartitem.quantity * cartitem.price}</h3>
+                    <hr />
+                  </div>
+                ))
+              ) : (
+                <h1>We've received your order!</h1>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );

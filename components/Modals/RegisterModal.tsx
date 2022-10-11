@@ -6,7 +6,8 @@ import axios from "axios";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import RegisterValidation from "../../Validations/RegisterValidation";
 
-const SERVER: string = "http://localhost:3000/";
+// const SERVER: string = "http://localhost:3000/";
+const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
 export default function RegisterModal() {
   const [open, setOpen] = useState(false);
@@ -88,7 +89,7 @@ export default function RegisterModal() {
                       placeholder='Full Name'
                     />
                     {errors.full_name && touched.full_name ? (
-                      <div>{errors.email}</div>
+                      <div>{errors.full_name}</div>
                     ) : null}
                   </div>
                   <br />
@@ -193,7 +194,7 @@ export default function RegisterModal() {
                         Object.keys(touched).length !== 0
                       )
                     }>
-                    Sign in
+                    Register As Member
                   </button>
                   <br />
                   {!registrationSuccessful && <p>Registration failed!</p>}

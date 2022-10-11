@@ -19,8 +19,7 @@ const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 export default function FirstPost() {
   const [open, setOpen] = useState(false);
   const [signInSuccessful, setSignInSuccessful] = useState(true);
-  const { token, setToken, userDetails, setUserDetails } =
-    useContext(AuthContext);
+  const { setUserDetails } = useContext(AuthContext);
 
   const handleLogin = async (values: object) => {
     setSignInSuccessful(true);

@@ -24,7 +24,7 @@ export default function MemberSales() {
   const { userDetails, cartArray, setCartArray } = useContext(AuthContext);
 
   const [cartEdited, setCartEdited] = useState(true);
-  const userID = userDetails.id;
+  const userID = userDetails?.id;
 
   useEffect(() => {
     const urlViewMyCart = urlcat(SERVER, `user/allcartitems/${userID}`);
@@ -43,7 +43,6 @@ export default function MemberSales() {
   }
   const name = userDetails.full_name.split(" ")[0];
 
-  //?add an edit cart quantity PUT route backend
   const handleEditCart = (values: object) => {
     // console.log(values);
     const urlCart = urlcat(SERVER, `user/edititemquantity/`);
@@ -52,9 +51,10 @@ export default function MemberSales() {
       .then(({ data }) => {
         // console.log(data);
         setCartEdited(true);
+        alert("Item quantity has been updated!");
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         setCartEdited(false);
       });
   };
@@ -94,30 +94,14 @@ export default function MemberSales() {
         {cartArray.map(
           (
             cartitem: {
-              quantity: any;
-              Goods_id: any;
-              id: any;
-              image_url: string | undefined;
-              title:
-                | string
-                | number
-                | boolean
-                | ReactElement<any, string | JSXElementConstructor<any>>
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
-              price:
-                | string
-                | number
-                | boolean
-                | ReactElement<any, string | JSXElementConstructor<any>>
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
+              quantity: number;
+              Goods_id: number;
+              id: number;
+              image_url: string;
+              title: string;
+              price: number;
             },
-            index: Key | null | undefined
+            index: number
           ) => (
             <div className='container' key={index}>
               <Formik
@@ -175,7 +159,7 @@ export default function MemberSales() {
                               max={5}
                             />
                             {errors.quantity && touched.quantity ? (
-                              <div>{}</div>
+                              <div>{errors.quantity}</div>
                             ) : null}
                           </div>
                           <br />
