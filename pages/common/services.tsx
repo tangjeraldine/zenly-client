@@ -6,7 +6,8 @@ import urlcat from "urlcat";
 import axios from "axios";
 import Link from "next/link";
 
-const SERVER: string = "http://localhost:3000/";
+// const SERVER: string = "http://localhost:3000/";
+const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
 type GoodsType = {
   title: string;
