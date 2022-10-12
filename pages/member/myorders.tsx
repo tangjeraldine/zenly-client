@@ -16,7 +16,7 @@ export default function MemberSales() {
   useEffect(() => {
     const urlPurchaseHistory = urlcat(
       SERVER,
-      `/user/mypurchases/${userDetails?.id}`
+      `user/mypurchases/${userDetails?.id}`
     );
     axios
       .get(urlPurchaseHistory)

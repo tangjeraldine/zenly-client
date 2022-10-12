@@ -6,6 +6,7 @@ import { AuthContext } from "../../components/AuthContext";
 import { useState, useContext, useEffect } from "react";
 import ErrorPage from "../../components/ErrorPage";
 import CartValidation from "../../Validations/CartValidation";
+import ViewGoodsDetailsModal from "../../components/Modals/ViewGoodsDetailsModal";
 
 // const SERVER: string = "http://localhost:3000/";
 const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
@@ -16,7 +17,7 @@ export default function MemberSales() {
   const [addedToCart, setAddedToCart] = useState<boolean>(true);
   const [notAddedToCart, setNotAddedToCart] = useState<boolean>(false);
   const [goodsType, setGoodsType] = useState<boolean>(true);
-  const { userDetails } = useContext(AuthContext);
+  const { userDetails, setViewGoodsDets } = useContext(AuthContext);
 
   useEffect(() => {
     const urlGoods = urlcat(SERVER, `/user/all`);
@@ -37,6 +38,19 @@ export default function MemberSales() {
 
   const handleChange = (e: any) => {
     setQuantity(e.target.value);
+  };
+
+  const handleViewGoodsDets = (id: number) => {
+    const urlViewThisGood = urlcat(SERVER, `user/viewthisgood/${id}`);
+    axios
+      .get(urlViewThisGood)
+      .then(({ data }) => {
+        console.log(data);
+        setViewGoodsDets(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleAddToCart = (values: object) => {
@@ -95,11 +109,17 @@ export default function MemberSales() {
                         height='400'
                       />
                       <div className='card-body'>
-                        <h4 className='card-title'>{each.title}</h4>
+                        <button
+                          type='button'
+                          className='btn btn-primary'
+                          data-bs-toggle='modal'
+                          data-bs-target='#exampleModal'
+                          data-bs-whatever='@getbootstrap'
+                          onClick={() => handleViewGoodsDets(each.id)}>
+                          <h4 className='card-title'>{each.title}</h4>
+                        </button>
                         <h5 className='card-text text-muted'>${each.price}</h5>
                         <hr />
-                        <p className='card-text'>{each.description}</p>
-                        {/* Make it into a modal when you have time */}
                         <Form>
                           <label htmlFor='Quantity'>
                             <h5>Quantity</h5>
@@ -151,6 +171,7 @@ export default function MemberSales() {
             </div>
           ))}
           {/* using formik */}
+          <ViewGoodsDetailsModal />
         </div>
       </div>
     </Layout>

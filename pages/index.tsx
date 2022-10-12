@@ -26,7 +26,7 @@ const Home: NextPage = () => {
             <div className='carousel-inner'>
               <div className='carousel-item mx-auto'>
                 <img
-                  src='/images/salesbanner1.jpeg'
+                  src='/images/salesbanner2.jpeg'
                   className='d-block w-100'
                   style={{ width: "800px", height: "400px" }}
                   alt='banner'
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
               </div>
               <div className='carousel-item active mx-auto'>
                 <img
-                  src='/images/salesbanner2.jpeg'
+                  src='/images/salesbanner1.jpeg'
                   className='d-block w-100'
                   style={{ width: "800px", height: "400px" }}
                   alt='banner'

@@ -8,8 +8,19 @@ interface Props {
 
 export const AuthWrapper: React.FC<Props> = ({ children }) => {
   const [userDetails, setUserDetails] = useState();
+  const [viewGoodsDets, setViewGoodsDets] = useState<object>({});
   const [cartArray, setCartArray] = useState([] as any[]);
-  let sharedState = { userDetails, setUserDetails, cartArray, setCartArray };
+  const [viewBuyer, setViewBuyer] = useState<object>({});
+  let sharedState = {
+    userDetails,
+    setUserDetails,
+    viewGoodsDets,
+    setViewGoodsDets,
+    cartArray,
+    setCartArray,
+    viewBuyer,
+    setViewBuyer,
+  };
 
   return (
     <AuthContext.Provider value={sharedState}>{children}</AuthContext.Provider>

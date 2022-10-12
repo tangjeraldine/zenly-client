@@ -22,7 +22,6 @@ const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
 export default function MemberSales() {
   const { userDetails, cartArray, setCartArray } = useContext(AuthContext);
-
   const [cartEdited, setCartEdited] = useState(true);
   const userID = userDetails?.id;
 
@@ -71,7 +70,7 @@ export default function MemberSales() {
       .then(({ data }) => {
         // console.log(data);
         alert("Item deleted!");
-
+        //? filter the deleted item out? or re-render page (but cannot refresh)
         // setCartEdited(true);
       })
       .catch((error) => {

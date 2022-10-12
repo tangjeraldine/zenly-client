@@ -37,14 +37,16 @@ const Layout: React.FC<Props> = ({ children, home }) => {
         style={{ backgroundColor: "#FF9F29" }}>
         <div className='container-fluid'>
           <Link className='navbar-brand' href='/'>
-            <img
-              src='/images/icon_pic.png'
-              alt='Logo'
-              width='40'
-              height='35'
-              className='d-inline-block align-text-top'
-            />
-            ZenLy
+            <a>
+              <img
+                src='/images/icon_pic.png'
+                alt='Logo'
+                width='40'
+                height='35'
+                className='d-inline-block align-text-top'
+              />
+              ZenLy
+            </a>
           </Link>
           <div id='navbarNav'>
             <ul className='navbar-nav text-black'>
@@ -70,7 +72,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
               </li>
               <li className='nav-item '>
                 <Link className='nav-link active' href='/admin/deleteusers'>
-                  Delete Users
+                  Member Account Status
                 </Link>
               </li>
               <li className='nav-item '>

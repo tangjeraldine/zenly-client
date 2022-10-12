@@ -1,194 +1,131 @@
-import Layout from "../../components/layoutLogin";
-import Image from "next/image";
-import {
-  InstagramEmbed,
-  YouTubeEmbed,
-  TikTokEmbed,
-  FacebookEmbed,
-} from "react-social-media-embed";
+import Layout from "../../components/layoutAdmin";
 import { AuthContext } from "../../components/AuthContext";
-import { useState, useContext } from "react";
+import urlcat from "urlcat";
+import axios from "axios";
+import { Field, Formik, Form } from "formik";
+import { useState, useEffect, useContext } from "react";
 import ErrorPage from "../../components/ErrorPage";
+import ViewBuyerModal from "../../components/Modals/ViewBuyerModal";
+import Link from "next/link";
 
-export default function MemberMain() {
-  const { userDetails } = useContext(AuthContext);
-  if (userDetails?.security_lvl !== 1) {
+// const SERVER: string = "http://localhost:3000/";
+const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
+
+export default function AdminMain() {
+  const { userDetails, setViewBuyer } = useContext(AuthContext);
+  const [allSortedOrders, setAllSortedOrders] = useState([] as any[]);
+
+  if (userDetails?.security_lvl !== 2) {
     return <ErrorPage />;
   }
   const name = userDetails.full_name.split(" ")[0];
+
+  useEffect(() => {
+    const urlAllSortedOrders = urlcat(SERVER, `admin/displayallorders/`);
+    axios
+      .get(urlAllSortedOrders)
+      .then(({ data }) => {
+        console.log(data);
+        setAllSortedOrders(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const handleViewBuyer = (id: number) => {
+    const urlViewThisBuyer = urlcat(SERVER, `admin/viewthisbuyer/${id}`);
+    axios
+      .get(urlViewThisBuyer)
+      .then(({ data }) => {
+        console.log(data);
+        setViewBuyer(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleChangeOrderStatus = (values: object) => {
+    const urlEditOrderStatus = urlcat(SERVER, `admin/editorderstatus/`);
+    console.log(values);
+    axios
+      .put(urlEditOrderStatus, values)
+      .then(({ data }) => {
+        console.log(data);
+        alert("Order status has been changed.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Layout home>
       <div>
         <h3>Welcome back, {name}</h3>
-        <div
-          id='carouselExampleDark'
-          className='carousel carousel-dark slide p-3'
-          data-bs-ride='carousel'>
-          <div className='carousel-indicators'>
-            <button
-              type='button'
-              data-bs-target='#carouselExampleDark'
-              data-bs-slide-to='0'
-              className=''
-              aria-label='Slide 1'></button>
-            <button
-              type='button'
-              data-bs-target='#carouselExampleDark'
-              data-bs-slide-to='1'
-              aria-label='Slide 2'
-              className=''></button>
-            <button
-              type='button'
-              data-bs-target='#carouselExampleDark'
-              data-bs-slide-to='2'
-              aria-label='Slide 3'
-              className='active'
-              aria-current='true'></button>
-          </div>
-          <div className='carousel-inner'>
-            <div className='carousel-item' data-bs-interval='5000'>
-              <img
-                alt='banner1'
-                src='/images/banner1.JPG'
-                className='bd-placeholder-img bd-placeholder-img-lg d-block mx-auto'
-                style={{ width: "800px", height: "400px" }}></img>
-            </div>
-            <div className='carousel-item' data-bs-interval='2000'>
-              <img
-                alt='banner1'
-                src='/images/banner2.JPG'
-                className='bd-placeholder-img bd-placeholder-img-lg d-block mx-auto'
-                style={{ width: "800px", height: "400px" }}></img>
-            </div>
-            <div className='carousel-item active'>
-              <img
-                alt='banner1'
-                src='/images/banner3.JPG'
-                className='bd-placeholder-img bd-placeholder-img-lg d-block mx-auto'
-                style={{ width: "800px", height: "400px" }}></img>
-            </div>
-          </div>
-          <button
-            className='carousel-control-prev'
-            type='button'
-            data-bs-target='#carouselExampleDark'
-            data-bs-slide='prev'>
-            <span
-              className='carousel-control-prev-icon'
-              aria-hidden='true'></span>
-            <span className='visually-hidden'>Previous</span>
-          </button>
-          <button
-            className='carousel-control-next'
-            type='button'
-            data-bs-target='#carouselExampleDark'
-            data-bs-slide='next'>
-            <span
-              className='carousel-control-next-icon'
-              aria-hidden='true'></span>
-            <span className='visually-hidden'>Next</span>
-          </button>
-        </div>
-
-        <div className='container p-3'>
-          <div className='row'>
-            <div className='col-sm p-3 w-25'>
-              <div className='stackParent position-relative'>
-                <img
-                  className='stack-Img img-fluid'
-                  src='/images/massage2.jpg'
-                  alt='side'
-                />
-                <div className='stack-Txt position-absolute top-50 start-50 translate-middle'>
-                  <div className='fourWsText stack-Txt-child text-black'>
-                    <Image
-                      src='/images/icon_pic.png' // Route of the image file
-                      height={100} // Desired size with correct aspect ratio
-                      width={100} // Desired size with correct aspect ratio
-                      alt='zenly'
-                    />
-                    <h1 className='text-center p-4'>
-                      Welcome back, <br /> {name}!
-                    </h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='col-sm p-3 w-25'>
-              <h2 className='text-center p-2'>
-                <span className='badge rounded-pill text-bg-warning'>
-                  Latest Articles
-                </span>
-              </h2>
-              <div className=' bg-light p-3 rounded-2 h-25 overflow-auto'>
-                <iframe
-                  src='https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FMothershipSG%2Fposts%2Fpfbid02sxueMfMBQ7aMSp8JLSqHaSzoVCPgguQNWCWMhWLpXzZhWYGvVn7YB4C7K7h6vNqhl&show_text=true&width=500'
-                  width='500'
-                  height='545'
-                  scrolling='no'
-                  frameBorder={0}
-                  allowFullScreen={true}
-                  allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'></iframe>
-                <iframe
-                  src='https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ffeelfreetaichi%2Fposts%2F683143525192263&show_text=true&width=500'
-                  width='500'
-                  height='551'
-                  scrolling='no'
-                  frameBorder={0}
-                  allowFullScreen={true}
-                  allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'></iframe>
-              </div>
-            </div>
-            <div className='col-sm w-25'>
-              <h2 className='text-center p-2'>
-                <span className='badge rounded-pill text-bg-success'>
-                  Videos
-                </span>
-              </h2>
-
-              <div className=' bg-light p-3 rounded-2 h-25 overflow-auto'>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <FacebookEmbed
-                    url=' https://www.facebook.com/watch/?v=376044129753467'
-                    width={550}
-                  />
-                </div>
-                <hr />
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <InstagramEmbed
-                    url='https://www.instagram.com/p/CfWSKkNpMaQ/?hl=en'
-                    width={328}
-                  />
-                </div>
-                <hr />
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <TikTokEmbed
-                    url='https://www.tiktok.com/@sunwayctm/video/7035487564106599686?is_from_webapp=v1&item_id=7035487564106599686&lang=en'
-                    width={325}
-                  />
-                </div>
-                <hr />
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <YouTubeEmbed
-                    url='https://www.youtube.com/watch?v=InlxUxtVWaE'
-                    width={325}
-                    height={220}
-                  />
-                </div>
-                <hr />
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <YouTubeEmbed
-                    url='https://www.youtube.com/watch?v=m-eVqNEhnI4'
-                    width={325}
-                    height={220}
-                  />
-                </div>
-                <hr />
-              </div>
+        {allSortedOrders.map((thisOrder, index) => (
+          <div className='card p-3 w-50 text-center' key={index}>
+            <div className='card-header'>{thisOrder?.created_at}</div>
+            <div className='card-body'>
+              <h5 className='card-title'>Title: {thisOrder?.title}</h5>
+              <p className='card-text'>Quantity: {thisOrder?.quantity}</p>
+              <p className='card-text'>Price: {thisOrder?.purchase_price}</p>
+              <p className='card-text'>Price: {thisOrder?.order_status}</p>
+              <p className='card-text'>
+                PayNow TN: {thisOrder?.transaction_no}
+              </p>
+              <button
+                type='button'
+                className='btn btn-primary'
+                data-bs-toggle='modal'
+                data-bs-target='#exampleModal'
+                data-bs-whatever='@getbootstrap'
+                onClick={() => handleViewBuyer(thisOrder.Users_id)}>
+                <a>View Buyer Details</a>
+              </button>
+              <br />
+              {/* using formik */}
+              <Formik
+                initialValues={{
+                  order_status: thisOrder?.order_status,
+                  transaction_no: thisOrder?.transaction_no,
+                  Goods_id: thisOrder?.Goods_id,
+                  Users_id: thisOrder?.Users_id,
+                }}
+                onSubmit={(values) => handleChangeOrderStatus(values)}>
+                {({ handleChange, values, initialValues }) => (
+                  <Form>
+                    <label htmlFor='Order Status'>
+                      <h5>Order Status</h5>
+                    </label>
+                    <div>
+                      <Field
+                        as='select'
+                        name='order_status'
+                        values={values.order_status}
+                        onChange={handleChange}>
+                        <option disabled>select</option>
+                        <option value='Pending Confirmation'>
+                          Pending Confirmation
+                        </option>
+                        <option value='Session Booked'>Session Booked</option>
+                        <option value='Order Completed'>Order Completed</option>
+                        <option value='Order Cancelled'>Order Cancelled</option>
+                      </Field>
+                    </div>
+                    <br />
+                    <button type='submit' className='btn btn-success'>
+                      Edit Status
+                    </button>
+                    <br />
+                  </Form>
+                )}
+              </Formik>
             </div>
           </div>
-        </div>
+        ))}
+        <ViewBuyerModal />
       </div>
     </Layout>
   );
