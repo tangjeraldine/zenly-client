@@ -27,12 +27,13 @@ export default function EditUsers() {
   };
 
   const handleSearchUserByName = () => {
+    console.log(thisName);
     const urlDisplayThisUser = urlcat(SERVER, `admin/viewuserslist/`);
     axios
       .post(urlDisplayThisUser, thisName)
       .then(({ data }) => {
         console.log(data);
-        setUserData(data);
+        // setUserData(data);
       })
       .catch((error) => {
         console.log(error);
