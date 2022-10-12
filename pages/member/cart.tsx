@@ -50,6 +50,7 @@ export default function MemberSales() {
       .then(({ data }) => {
         // console.log(data);
         setCartEdited(true);
+
         alert("Item quantity has been updated!");
       })
       .catch((error) => {
@@ -60,6 +61,7 @@ export default function MemberSales() {
 
   const handleRemoveCartItem = (values: any) => {
     console.log(values);
+    // console.log("1", cartArray);
     const cartItemID: number = values?.cartItem_id;
     const urlDeleteFromCart = urlcat(
       SERVER,
@@ -71,7 +73,10 @@ export default function MemberSales() {
         // console.log(data);
         alert("Item deleted!");
         //? filter the deleted item out? or re-render page (but cannot refresh)
-        // setCartEdited(true);
+        setCartArray(
+          cartArray.filter((del: { id: number }) => del.id !== cartItemID)
+        );
+        // console.log("2", cartArray);
       })
       .catch((error) => {
         // console.log(error);

@@ -26,7 +26,7 @@ const Layout: React.FC<Props> = ({ children, home }) => {
       <div className={styles2.bgWrap}>
         <Image
           alt='zenly'
-          src='/images/wallpaper3.jpg'
+          src='/images/wallpaper2.jpg'
           layout='fill'
           objectFit='cover'
           quality={100}

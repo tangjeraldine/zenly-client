@@ -2,18 +2,18 @@ import Layout from "../../components/layoutAdmin";
 import { AuthContext } from "../../components/AuthContext";
 import urlcat from "urlcat";
 import axios from "axios";
-import { Field, Formik, Form } from "formik";
 import { useState, useEffect, useContext } from "react";
 import ErrorPage from "../../components/ErrorPage";
-import ViewBuyerModal from "../../components/Modals/ViewBuyerModal";
+import EditGoodsDetailsModal from "../../components/Modals/EditGoodsDetailsModal";
 import Link from "next/link";
+import AddNewGoodsModal from "../../components/Modals/AddNewGoodsModal";
 
 // const SERVER: string = "http://localhost:3000/";
 const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 
 export default function AdminMain() {
-  const { userDetails, setViewBuyer } = useContext(AuthContext);
-  const [allSortedOrders, setAllSortedOrders] = useState([] as any[]);
+  const { userDetails, setEditGoodsDets } = useContext(AuthContext);
+  const [allGoods, setAllGoods] = useState([] as any[]);
 
   if (userDetails?.security_lvl !== 2) {
     return <ErrorPage />;
@@ -21,39 +21,39 @@ export default function AdminMain() {
   const name = userDetails.full_name.split(" ")[0];
 
   useEffect(() => {
-    const urlAllSortedOrders = urlcat(SERVER, `admin/displayallorders/`);
+    const urlDisplayAllGoods = urlcat(SERVER, `admin/viewgoodslist/`);
     axios
-      .get(urlAllSortedOrders)
+      .get(urlDisplayAllGoods)
       .then(({ data }) => {
         console.log(data);
-        setAllSortedOrders(data);
+        setAllGoods(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  const handleViewBuyer = (id: number) => {
-    const urlViewThisBuyer = urlcat(SERVER, `admin/viewthisbuyer/${id}`);
+  const handleSetGoodsDetails = (id: number) => {
+    const urlDisplayThisGood = urlcat(SERVER, `admin/viewgoodslist/${id}`);
     axios
-      .get(urlViewThisBuyer)
+      .get(urlDisplayThisGood)
       .then(({ data }) => {
         console.log(data);
-        setViewBuyer(data);
+        setEditGoodsDets(data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleChangeOrderStatus = (values: object) => {
-    const urlEditOrderStatus = urlcat(SERVER, `admin/editorderstatus/`);
-    console.log(values);
+  const handleDeleteItem = (id: number) => {
+    const urlDeleteThisItem = urlcat(SERVER, `admin/deleteuser/${id}`);
     axios
-      .put(urlEditOrderStatus, values)
+      .get(urlDeleteThisItem)
       .then(({ data }) => {
         console.log(data);
-        alert("Order status has been changed.");
+        setAllGoods(allGoods.filter((del: { id: number }) => del.id !== id));
+        alert("This item has been deleted.");
       })
       .catch((error) => {
         console.log(error);
@@ -64,69 +64,46 @@ export default function AdminMain() {
     <Layout home>
       <div>
         <h3>Welcome back, {name}</h3>
-        {allSortedOrders.map((thisOrder, index) => (
+        <button
+          type='button'
+          className='btn btn-warning p-2 m-5'
+          data-bs-toggle='modal'
+          data-bs-target='#addNewModal'
+          data-bs-whatever='@getbootstrap'>
+          <a>Add A New Item</a>
+        </button>
+        <AddNewGoodsModal />
+        <br />
+        {allGoods.map((thisGood, index) => (
           <div className='card p-3 w-50 text-center' key={index}>
-            <div className='card-header'>{thisOrder?.created_at}</div>
+            <div className='card-header'>{thisGood?.created_at}</div>
             <div className='card-body'>
-              <h5 className='card-title'>Title: {thisOrder?.title}</h5>
-              <p className='card-text'>Quantity: {thisOrder?.quantity}</p>
-              <p className='card-text'>Price: {thisOrder?.purchase_price}</p>
-              <p className='card-text'>Price: {thisOrder?.order_status}</p>
-              <p className='card-text'>
-                PayNow TN: {thisOrder?.transaction_no}
-              </p>
+              <img
+                src={thisGood.image_url}
+                alt='itemphoto'
+                style={{ height: "200px", width: "300px" }}
+              />
+              <h5 className='card-title'>Title: {thisGood?.title}</h5>
+              <p className='card-text'>Price: {thisGood?.price}</p>
               <button
                 type='button'
                 className='btn btn-primary'
                 data-bs-toggle='modal'
                 data-bs-target='#exampleModal'
                 data-bs-whatever='@getbootstrap'
-                onClick={() => handleViewBuyer(thisOrder.Users_id)}>
-                <a>View Buyer Details</a>
+                onClick={() => handleSetGoodsDetails(thisGood.id)}>
+                <a>View or Edit Details</a>
               </button>
               <br />
-              {/* using formik */}
-              <Formik
-                initialValues={{
-                  order_status: thisOrder?.order_status,
-                  transaction_no: thisOrder?.transaction_no,
-                  Goods_id: thisOrder?.Goods_id,
-                  Users_id: thisOrder?.Users_id,
-                  created_at: thisOrder?.created_at,
-                }}
-                onSubmit={(values) => handleChangeOrderStatus(values)}>
-                {({ handleChange, values, initialValues }) => (
-                  <Form>
-                    <label htmlFor='Order Status'>
-                      <h5>Order Status</h5>
-                    </label>
-                    <div>
-                      <Field
-                        as='select'
-                        name='order_status'
-                        values={values.order_status}
-                        onChange={handleChange}>
-                        <option disabled>select</option>
-                        <option value='Pending Confirmation'>
-                          Pending Confirmation
-                        </option>
-                        <option value='Session Booked'>Session Booked</option>
-                        <option value='Order Completed'>Order Completed</option>
-                        <option value='Order Cancelled'>Order Cancelled</option>
-                      </Field>
-                    </div>
-                    <br />
-                    <button type='submit' className='btn btn-success'>
-                      Edit Status
-                    </button>
-                    <br />
-                  </Form>
-                )}
-              </Formik>
+              <button
+                className='btn btn-danger'
+                onClick={() => handleDeleteItem(thisGood.id)}>
+                Delete This Item
+              </button>
             </div>
           </div>
         ))}
-        <ViewBuyerModal />
+        <EditGoodsDetailsModal />
       </div>
     </Layout>
   );

@@ -11,6 +11,7 @@ export const AuthWrapper: React.FC<Props> = ({ children }) => {
   const [viewGoodsDets, setViewGoodsDets] = useState<object>({});
   const [cartArray, setCartArray] = useState([] as any[]);
   const [viewBuyer, setViewBuyer] = useState<object>({});
+  const [editGoodsDets, setEditGoodsDets] = useState<object>({});
   let sharedState = {
     userDetails,
     setUserDetails,
@@ -20,6 +21,8 @@ export const AuthWrapper: React.FC<Props> = ({ children }) => {
     setCartArray,
     viewBuyer,
     setViewBuyer,
+    editGoodsDets,
+    setEditGoodsDets,
   };
 
   return (

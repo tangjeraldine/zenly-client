@@ -33,6 +33,13 @@ export default function AdminMain() {
       });
   }, []);
 
+  let newSortedOrders = [] as any[];
+  for (const eachOrder of allSortedOrders) {
+    if (eachOrder.transaction_no !== null) {
+      newSortedOrders.push(eachOrder);
+    }
+  }
+
   const handleViewBuyer = (id: number) => {
     const urlViewThisBuyer = urlcat(SERVER, `admin/viewthisbuyer/${id}`);
     axios
@@ -64,7 +71,7 @@ export default function AdminMain() {
     <Layout home>
       <div>
         <h3>Welcome back, {name}</h3>
-        {allSortedOrders.map((thisOrder, index) => (
+        {newSortedOrders.map((thisOrder, index) => (
           <div className='card p-3 w-50 text-center' key={index}>
             <div className='card-header'>{thisOrder?.created_at}</div>
             <div className='card-body'>
