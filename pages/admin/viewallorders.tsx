@@ -92,6 +92,7 @@ export default function AdminMain() {
                   transaction_no: thisOrder?.transaction_no,
                   Goods_id: thisOrder?.Goods_id,
                   Users_id: thisOrder?.Users_id,
+                  created_at: thisOrder?.created_at,
                 }}
                 onSubmit={(values) => handleChangeOrderStatus(values)}>
                 {({ handleChange, values, initialValues }) => (
