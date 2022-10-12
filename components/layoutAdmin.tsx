@@ -60,18 +60,18 @@ const Layout: React.FC<Props> = ({ children, home }) => {
                   View All Orders
                 </Link>
               </li>
-              <li className='nav-item '>
-                <Link className='nav-link active' href='/admin/viewallfeedback'>
-                  View All Feedback
-                </Link>
-              </li>
-              <li className='nav-item '>
+              {/* <li className='nav-item '>
                 <Link className='nav-link active' href='/admin/viewallorders'>
                   Appointments
                 </Link>
+              </li> */}
+              <li className='nav-item '>
+                <Link className='nav-link active' href='/admin/editgoodslist'>
+                  Edit Goods List
+                </Link>
               </li>
               <li className='nav-item '>
-                <Link className='nav-link active' href='/admin/deleteusers'>
+                <Link className='nav-link active' href='/admin/editusers'>
                   Member Account Status
                 </Link>
               </li>
