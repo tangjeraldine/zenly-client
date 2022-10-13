@@ -1,4 +1,4 @@
-import Layout from "../../components/layoutLogin";
+import Layout from "../../components/LayoutLogin";
 import Image from "next/image";
 import {
   InstagramEmbed,

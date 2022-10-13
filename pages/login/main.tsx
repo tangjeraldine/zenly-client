@@ -10,7 +10,7 @@ import parseJwt from "../../parseJwt";
 import Router from "next/router";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import LoginValidation from "../../Validations/LoginValidation";
-import Layout from "../../components/layoutPublic";
+import Layout from "../../components/LayoutPublic";
 import RegisterModal from "../../components/Modals/RegisterModal";
 
 // const SERVER: string = "http://localhost:3000/";

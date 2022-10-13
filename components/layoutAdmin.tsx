@@ -4,9 +4,9 @@ import styles from "../styles/Home.module.css";
 import styles2 from "../styles/styles.module.css";
 import Link from "next/link";
 import { BsCart4 } from "react-icons/bs";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "./AuthContext";
 import { useState, useContext, ReactNode } from "react";
-import ErrorPage from "../components/ErrorPage";
+import ErrorPage from "./ErrorPage";
 
 interface Props {
   children?: ReactNode;

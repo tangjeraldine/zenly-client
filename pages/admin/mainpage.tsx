@@ -1,4 +1,4 @@
-import Layout from "../../components/layoutAdmin";
+import Layout from "../../components/LayoutAdmin";
 import { AuthContext } from "../../components/AuthContext";
 import urlcat from "urlcat";
 import axios from "axios";

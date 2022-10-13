@@ -1,4 +1,4 @@
-import Layout from "../../components/layoutPublic";
+import Layout from "../../components/LayoutPublic";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";

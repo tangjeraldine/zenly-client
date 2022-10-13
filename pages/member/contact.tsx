@@ -1,4 +1,4 @@
-import Layout from "../../components/layoutLogin";
+import Layout from "../../components/LayoutLogin";
 import Head from "next/head";
 import { AuthContext } from "../../components/AuthContext";
 import { useState, useContext } from "react";
