@@ -44,19 +44,31 @@ export default function Products() {
               </p>
               <hr />
               <br />
-              <h3 className='m-2'>Say Hi!</h3>
-              <br />
-              <h5 className='m-2'>
-                If you have any concerns regarding the treatments available at
-                ZenLy, you may contact Bobby directly via WhatsApp, WeChat, or
-                phone call at +65 91234567.
-              </h5>
-              <br />
-              <p className='m-2'>
-                Bobby typically replies within the day. However, during peak
-                seasons, please allow at least 1 working day for him to attend
-                to non-urgent enquiries!
-              </p>
+              <div
+                className='card border-warning mb-3'
+                style={{ maxWidth: "700px" }}>
+                <div className='card-header'>
+                  <h5>Say Hi!</h5>
+                </div>
+                <div className='card-body'>
+                  {/* <h5 className='card-title'>Say Hi!</h5> */}
+                  <div className='card-text'>
+                    <p className='m-2'>
+                      <strong>
+                        If you have any concerns regarding the treatments
+                        available at ZenLy, you may contact Bobby directly via
+                        WhatsApp, WeChat, or phone call at +65 91234567.
+                      </strong>
+                    </p>
+                    <br />
+                    <p className='m-2'>
+                      Bobby typically replies within the day. However, during
+                      peak seasons, please allow at least 1 working day for him
+                      to attend to non-urgent enquiries!
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

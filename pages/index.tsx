@@ -62,7 +62,7 @@ const Home: NextPage = () => {
                   alt='smiling'
                 />
                 <h3 className='m-4'>
-                  Never let your pain deny you of what's yours.
+                  <strong>Never let your pain deny you of what's yours.</strong>
                 </h3>
                 <h3 className='m-4'>Trust ZenLy.</h3>
                 <br />
@@ -85,18 +85,18 @@ const Home: NextPage = () => {
                       <h3 className='m-4'>
                         And we know exactly how to solve it.
                       </h3>
-                      <p className='m-4'>
+                      <p className='m-4 lead'>
                         Get a free 5-minute phone consultation with us by
                         registering as a new member on our site.{" "}
                         <em>
                           Only for the first 200 members to sign up on our site.
                         </em>
                       </p>
-                      <p className='m-4'>
+                      <p className='m-4 lead'>
                         Once you've created your account, drop us a text at +65
                         91234567 to secure a slot!
                       </p>
-                      <p className='m-4'>
+                      <p className='m-4 lead'>
                         <strong>
                           Let the experts ease your worries and of course, your
                           pains.
