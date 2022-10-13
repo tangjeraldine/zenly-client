@@ -71,7 +71,7 @@ export default function EditUsers() {
   return (
     <Layout home>
       <div>
-        <h3>Welcome back, {name}</h3>
+        <h3 className='text-center display-6'>Search for a user to edit: </h3>
         <br />
         <div className='input-group mb-3'>
           <span className='input-group-text' id='inputGroup-sizing-default'>

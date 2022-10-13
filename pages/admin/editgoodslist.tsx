@@ -63,40 +63,44 @@ export default function AdminMain() {
   return (
     <Layout home>
       <div>
-        <h3>Welcome back, {name}</h3>
-        <button
-          type='button'
-          className='btn btn-warning p-2 m-5'
-          data-bs-toggle='modal'
-          data-bs-target='#addNewModal'
-          data-bs-whatever='@getbootstrap'>
-          <a>Add A New Item</a>
-        </button>
+        <h3 className='text-center display-5'>
+          Inventory List
+          <br />
+          <button
+            type='button'
+            className='btn btn-warning btn-lg p-2 m-5'
+            data-bs-toggle='modal'
+            data-bs-target='#addNewModal'
+            data-bs-whatever='@getbootstrap'>
+            Add A New Item
+          </button>
+        </h3>
+
         <AddNewGoodsModal />
         <br />
         {allGoods.map((thisGood, index) => (
-          <div className='card p-3 w-50 text-center' key={index}>
-            <div className='card-header'>{thisGood?.created_at}</div>
+          <div className='card p-3 w-50 text-center mx-auto m-3' key={index}>
             <div className='card-body'>
               <img
                 src={thisGood.image_url}
                 alt='itemphoto'
                 style={{ height: "200px", width: "300px" }}
+                className='rounded m-3'
               />
               <h5 className='card-title'>Title: {thisGood?.title}</h5>
-              <p className='card-text'>Price: {thisGood?.price}</p>
+              <h5 className='card-text'>Price: ${thisGood?.price}</h5>
               <button
                 type='button'
-                className='btn btn-primary'
+                className='btn btn-primary m-3'
                 data-bs-toggle='modal'
                 data-bs-target='#exampleModal'
                 data-bs-whatever='@getbootstrap'
                 onClick={() => handleSetGoodsDetails(thisGood.id)}>
                 <a>View or Edit Details</a>
               </button>
-              <br />
+              <hr />
               <button
-                className='btn btn-danger'
+                className='btn btn-danger m-1'
                 onClick={() => handleDeleteItem(thisGood.id)}>
                 Delete This Item
               </button>
