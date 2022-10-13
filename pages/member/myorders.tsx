@@ -12,8 +12,10 @@ const SERVER: string = "https://easy-lime-capybara-tam.cyclic.app/";
 export default function MemberSales() {
   const [purchaseHistory, setPurchaseHistory] = useState([] as any[]);
   const { userDetails } = useContext(AuthContext);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setLoading(true);
     const urlPurchaseHistory = urlcat(
       SERVER,
       `user/mypurchases/${userDetails?.id}`
@@ -22,10 +24,12 @@ export default function MemberSales() {
       .get(urlPurchaseHistory)
       .then(({ data }) => {
         // console.log(data);
+        setLoading(false);
         setPurchaseHistory(data);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   }, []);
 
@@ -54,42 +58,56 @@ export default function MemberSales() {
 
   return (
     <Layout home>
-      <div>
-        <h1>This is the order history page, {name}</h1>
-        <div className='container'>
-          {newArray.map((eachPurchase, index) => (
-            <div key={index} className='card w-75 row justify-content-center'>
-              <div className='card-body'>
-                <img
-                  src={eachPurchase?.purchasePhoto}
-                  alt='itempic'
-                  style={{ height: "200px", width: "350px" }}
-                />
-                <h4 className='card-title'>
-                  Item: {eachPurchase?.purchaseItem}
-                </h4>
-                <h5 className='card-text text-muted'>
-                  Price: ${eachPurchase?.purchasePrice} each
-                </h5>
-                <hr />
-                <p className='card-text'>
-                  Quantity Purchased: {eachPurchase?.purchaseQuantity}
-                </p>
-                <h5>Purchase Status: {eachPurchase?.purchaseStatus}</h5>
-                <p>
-                  <em>
-                    PayNow Transaction No.:
-                    <strong>{eachPurchase?.purchaseTransaction}</strong>
-                  </em>
-                </p>
-                <p>Date Purchased: {eachPurchase?.purchaseDate}</p>
-                <br />
-                <br />
-              </div>
+      {loading ? (
+        <p className='placeholder-glow p-5'>
+          Loading...
+          <span className='placeholder col-12'></span>
+        </p>
+      ) : (
+        <div>
+          <h1 className='text-center p-3 display-6'>Your past purchases:</h1>
+          <div className='container'>
+            <div className='row row-cols-1 row-cols-md-2 g-4'>
+              {newArray.map((eachPurchase, index) => (
+                <div key={index}>
+                  <div className='col'>
+                    <div className='card'>
+                      <img
+                        src={eachPurchase?.purchasePhoto}
+                        className='card-img-top mx-auto round'
+                        style={{ height: "150px", width: "250px" }}
+                        alt='itempic'
+                      />
+                      <div className='card-body'>
+                        <h5 className='card-title'>
+                          Item: {eachPurchase?.purchaseItem}
+                        </h5>
+                        <p className='card-text text-muted'>
+                          Price: ${eachPurchase?.purchasePrice} each
+                        </p>
+
+                        <p className='card-text'>
+                          Quantity Purchased: {eachPurchase?.purchaseQuantity}
+                        </p>
+
+                        <p>
+                          <em>
+                            PayNow Transaction No.:
+                            <strong>{eachPurchase?.purchaseTransaction}</strong>
+                          </em>
+                        </p>
+                        <p>Date Purchased: {eachPurchase?.purchaseDate}</p>
+                        <hr />
+                        <h5>Purchase Status: {eachPurchase?.purchaseStatus}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   );
 }

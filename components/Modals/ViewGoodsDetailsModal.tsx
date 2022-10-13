@@ -16,9 +16,9 @@ export default function ViewGoodsDetailsModal() {
       <div className='modal-dialog'>
         <div className='modal-content'>
           <div className='modal-header'>
-            <h1 className='modal-title fs-5' id='exampleModalLabel'>
+            <h4 className='modal-title fs-5' id='exampleModalLabel'>
               Title: {viewGoodsDets?.title}
-            </h1>
+            </h4>
             <button
               type='button'
               className='btn-close'
@@ -26,9 +26,10 @@ export default function ViewGoodsDetailsModal() {
               aria-label='Close'></button>
           </div>
           <div className='modal-body'>
-            <h1 className='modal-title fs-5' id='exampleModalLabel'>
-              Description: {viewGoodsDets?.description}
-            </h1>
+            <h5 className='modal-title fs-5' id='exampleModalLabel'>
+              Description:
+              <p className='lead'>{viewGoodsDets?.description}</p>
+            </h5>
           </div>
           <div className='modal-footer'>
             <button

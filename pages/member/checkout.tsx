@@ -87,19 +87,23 @@ export default function MemberSales() {
       <div>
         <div className='container'>
           <div className='row'>
-            <div className='col-sm'>
-              <h1>
+            <div className='col-sm p-5'>
+              <h2 className='display-5'>
                 Hey {name}, you have altogether {cartArray.length}
                 item(s) to check out.
-              </h1>
+              </h2>
               <br />
-              <h3>The grand total to pay is: SGD ${grand_totalReducer}</h3>
+              <h5 className='display-6'>
+                Grand total: SGD ${grand_totalReducer}.00
+              </h5>
               <hr />
-              <h5>PLEASE READ THE FOLLOWING BEFORE PROCEEDING:</h5>
+              <h5 style={{ color: "red" }}>
+                PLEASE READ THE FOLLOWING BEFORE PROCEEDING:
+              </h5>
               <p>
-                Please make a payment of **INSERT GRANT TOTAL** via the PayNow
-                QR code shown below, and provide us with the payment transaction
-                number in the field below.
+                Please make a payment of <u>${grand_totalReducer}.00</u> via the
+                PayNow QR code shown below, and provide us with the payment
+                transaction number in the field below.
               </p>
               <Formik
                 initialValues={{
@@ -160,41 +164,90 @@ export default function MemberSales() {
                   </div>
                 )}
               </Formik>
-              <p>
-                Do note that we only accept payment by PayNow at this time. Our
-                team will need to verify your payment by transaction number and
-                your date of purchase. We will not be able to proceed with item
-                collection or honour any appointment bookings until full payment
-                has been confirmed.
-              </p>
-              <p>
-                Once we have confirmed receipt of your payment, we will update
-                your order status and be in touch with you to discuss collection
-                or timeslot bookings!
-              </p>
-              <p>
-                For other enquiries, do drop us a message by WhatsApp or WeChat,
-                and we will reply you within 1 business day.
-              </p>
-              <Link href='/member/cart'>Click here to return to cart</Link>
+              <br />
+              <div
+                className='rounded p-4'
+                style={{ backgroundColor: "#FFCB42" }}>
+                <p>
+                  <strong>Payment Mode</strong>
+                </p>
+                <p>
+                  Do note that we only accept payment by PayNow at this time.
+                  Our team will need to verify your payment by transaction
+                  number and your date of purchase. We will not be able to
+                  proceed with item collection or honour any appointment
+                  bookings until full payment has been confirmed.
+                </p>
+                <p>
+                  <strong>Appointment Booking</strong>
+                </p>
+                <p>
+                  Once we have confirmed receipt of your payment, we will update
+                  your order status and be in touch with you to discuss
+                  collection or timeslot bookings!
+                </p>
+                <p>
+                  <strong>Refund/ Return Policy</strong>
+                </p>
+                <p>
+                  Refunds and returns will be considered on a case-by-case
+                  basis. For other enquiries, do drop us a message by WhatsApp
+                  or WeChat, and we will reply you within 1 business day.
+                </p>
+                <Link href='/member/cart'>
+                  <a>
+                    <button className='btn btn-success btn-outline-light'>
+                      Click here to return to cart
+                    </button>
+                  </a>
+                </Link>
+              </div>
             </div>
-            <div className='col-sm w-25'>
+            <div className='col-sm w-25 p-5'>
               <Image
                 src='/images/qrcode.png'
                 height={400}
                 width={400}
                 alt='zenly'
-              />{" "}
+              />
+
               <hr />
+              <h5 className='text-center display-6'>Items to check out:</h5>
               {addToPurchases === null || addToPurchases === false ? (
                 cartArray.map((cartitem: CartType, index: number) => (
                   <div className='container' key={index}>
-                    <img src={cartitem.image_url} alt={cartitem.image_url} />
-                    <h5>Title: {cartitem.title}</h5>
-                    <h5>Price: ${cartitem.price}</h5>
-                    <h5>Quantity: {cartitem.quantity}</h5>
-                    <h3>Item Total: ${cartitem.quantity * cartitem.price}</h3>
-                    <hr />
+                    <div className='card mb-3' style={{ maxWidth: "600px" }}>
+                      <div className='row g-0'>
+                        <div className='col-md-4'>
+                          <img
+                            src={cartitem.image_url}
+                            className='img-fluid rounded-start'
+                            alt='itemimage'
+                          />
+                        </div>
+                        <div className='col-md-8'>
+                          <div className='card-body'>
+                            <h5 className='card-title'>
+                              Title: {cartitem.title}
+                            </h5>
+                            <div className='card-text'>
+                              <p>
+                                Price: <strong>${cartitem.price}</strong>
+                              </p>
+                              <p>
+                                Quantity: <strong>{cartitem.quantity}</strong>
+                              </p>
+                              <p>
+                                Item Total: $
+                                <strong>
+                                  {cartitem.quantity * cartitem.price}
+                                </strong>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))
               ) : (
