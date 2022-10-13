@@ -93,8 +93,8 @@ export default function EditUsers() {
         </button>
         <br />
         <hr />
-        {userData.map((each) => (
-          <div>
+        {userData.map((each, index) => (
+          <div key={index}>
             <h5>Name: {each.full_name}</h5>
             <button onClick={() => handleDelete(each.id)}>Delete User</button>
             <br />
