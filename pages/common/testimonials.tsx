@@ -8,7 +8,7 @@ export default function Products() {
         <Head>
           <title>FAQs and Testimonials</title>
         </Head>
-        <h1 className='text-center'>Frequently Asked Questions</h1>
+        <h3 className='text-center m-3'>Frequently Asked Questions</h3>
         <div className='accordion' id='accordionExample'>
           <div className='accordion-item'>
             <h2 className='accordion-header' id='headingOne'>
@@ -192,7 +192,8 @@ export default function Products() {
               <img
                 src='https://images.unsplash.com/photo-1620733723572-11c53f73a416?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
                 alt='sideimage'
-                className='img-fluid'
+                style={{ height: "600", width: "380" }}
+                className='d-block mx-auto'
               />
             </div>
           </div>

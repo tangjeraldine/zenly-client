@@ -15,10 +15,10 @@ export default function Products() {
             <div className='col'>
               <Image
                 src='/images/sidepic1.jpg'
-                height={400}
-                width={280}
+                height={700}
+                width={580}
                 alt='sideimage'
-                className='img-fluid'
+                className='d-block mx-auto'
               />
             </div>
             <div className='col p-3'>

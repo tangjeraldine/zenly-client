@@ -61,8 +61,10 @@ const Home: NextPage = () => {
                   src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80'
                   alt='smiling'
                 />
-                <h3>Never let your pain deny you of what's yours.</h3>
-                <h3>Trust ZenLy.</h3>
+                <h3 className='m-4'>
+                  Never let your pain deny you of what's yours.
+                </h3>
+                <h3 className='m-4'>Trust ZenLy.</h3>
                 <br />
               </div>
               <div className='container'>
@@ -75,24 +77,26 @@ const Home: NextPage = () => {
                     />
                   </div>
                   <div className='col-sm'>
-                    <div className='mx-auto'>
-                      <h3>
+                    <div className='mx-auto p-3'>
+                      <h3 className='m-4'>
                         Because we understand your aches, every nook and cranny
                         of it.
                       </h3>
-                      <h3>And we know exactly how to solve it.</h3>
-                      <p>
+                      <h3 className='m-4'>
+                        And we know exactly how to solve it.
+                      </h3>
+                      <p className='m-4'>
                         Get a free 5-minute phone consultation with us by
                         registering as a new member on our site.{" "}
                         <em>
                           Only for the first 200 members to sign up on our site.
                         </em>
                       </p>
-                      <p>
+                      <p className='m-4'>
                         Once you've created your account, drop us a text at +65
                         91234567 to secure a slot!
                       </p>
-                      <p>
+                      <p className='m-4'>
                         <strong>
                           Let the experts ease your worries and of course, your
                           pains.
@@ -100,7 +104,7 @@ const Home: NextPage = () => {
                       </p>
                       <button
                         type='button'
-                        className='btn btn-warning btn-outline-dark'
+                        className='btn btn-warning btn-outline-dark m-4'
                         data-bs-toggle='modal'
                         data-bs-target='#exampleModal'
                         data-bs-whatever='@mdo'>

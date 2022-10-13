@@ -6,21 +6,20 @@ export default function CommonPagesNavBar() {
       <nav className='navbar navbar-expand-lg fixed-top bg-light'>
         <div className='container-fluid'>
           <Link className='navbar-brand' href='/'>
-            <Link className='navbar-brand' href='/'>
-              <a>
-                <img
-                  src='/images/icon_pic.png'
-                  alt='Logo'
-                  width='35'
-                  height='40'
-                  className='d-inline-block align-text-top'
-                />
-                <button type='button' className='btn btn-light'>
-                  ZenLy
-                </button>
-              </a>
-            </Link>
+            <a>
+              <img
+                src='/images/icon_pic.png'
+                alt='Logo'
+                width='35'
+                height='40'
+                className='d-inline-block align-text-top'
+              />
+              <button type='button' className='btn btn-light'>
+                ZenLy
+              </button>
+            </a>
           </Link>
+
           <div id='navbarNav'>
             <ul className='navbar-nav text-black'>
               <li className='nav-item me-3'>
