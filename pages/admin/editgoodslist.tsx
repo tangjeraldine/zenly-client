@@ -1,5 +1,5 @@
 import { AuthContext } from "../../components/AuthContext";
-
+import LayoutAdmin from "../../components/Layouts/LayoutAdmin";
 import urlcat from "urlcat";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
@@ -61,52 +61,54 @@ export default function AdminMain() {
   };
 
   return (
-    <div>
-      <h3 className='text-center display-5'>
-        Inventory List
-        <br />
-        <button
-          type='button'
-          className='btn btn-warning btn-lg p-2 m-5'
-          data-bs-toggle='modal'
-          data-bs-target='#addNewModal'
-          data-bs-whatever='@getbootstrap'>
-          Add A New Item
-        </button>
-      </h3>
+    <LayoutAdmin home>
+      <div>
+        <h3 className='text-center display-5'>
+          Inventory List
+          <br />
+          <button
+            type='button'
+            className='btn btn-warning btn-lg p-2 m-5'
+            data-bs-toggle='modal'
+            data-bs-target='#addNewModal'
+            data-bs-whatever='@getbootstrap'>
+            Add A New Item
+          </button>
+        </h3>
 
-      <AddNewGoodsModal />
-      <br />
-      {allGoods.map((thisGood, index) => (
-        <div className='card p-3 w-50 text-center mx-auto m-3' key={index}>
-          <div className='card-body'>
-            <img
-              src={thisGood.image_url}
-              alt='itemphoto'
-              style={{ height: "200px", width: "300px" }}
-              className='rounded m-3'
-            />
-            <h5 className='card-title'>Title: {thisGood?.title}</h5>
-            <h5 className='card-text'>Price: ${thisGood?.price}</h5>
-            <button
-              type='button'
-              className='btn btn-primary m-3'
-              data-bs-toggle='modal'
-              data-bs-target='#exampleModal'
-              data-bs-whatever='@getbootstrap'
-              onClick={() => handleSetGoodsDetails(thisGood.id)}>
-              <a>View or Edit Details</a>
-            </button>
-            <hr />
-            <button
-              className='btn btn-danger m-1'
-              onClick={() => handleDeleteItem(thisGood.id)}>
-              Delete This Item
-            </button>
+        <AddNewGoodsModal />
+        <br />
+        {allGoods.map((thisGood, index) => (
+          <div className='card p-3 w-50 text-center mx-auto m-3' key={index}>
+            <div className='card-body'>
+              <img
+                src={thisGood.image_url}
+                alt='itemphoto'
+                style={{ height: "200px", width: "300px" }}
+                className='rounded m-3'
+              />
+              <h5 className='card-title'>Title: {thisGood?.title}</h5>
+              <h5 className='card-text'>Price: ${thisGood?.price}</h5>
+              <button
+                type='button'
+                className='btn btn-primary m-3'
+                data-bs-toggle='modal'
+                data-bs-target='#exampleModal'
+                data-bs-whatever='@getbootstrap'
+                onClick={() => handleSetGoodsDetails(thisGood.id)}>
+                <a>View or Edit Details</a>
+              </button>
+              <hr />
+              <button
+                className='btn btn-danger m-1'
+                onClick={() => handleDeleteItem(thisGood.id)}>
+                Delete This Item
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
-      <EditGoodsDetailsModal />
-    </div>
+        ))}
+        <EditGoodsDetailsModal />
+      </div>
+    </LayoutAdmin>
   );
 }
