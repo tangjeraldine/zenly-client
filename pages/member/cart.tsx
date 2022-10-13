@@ -1,4 +1,3 @@
-import Layout from "../../components/LayoutLogin";
 import urlcat from "urlcat";
 import axios from "axios";
 import { Field, Formik, Form } from "formik";
@@ -96,152 +95,150 @@ export default function MemberSales() {
   };
 
   return (
-    <Layout home>
-      <div>
-        <h1 className='text-center p-3 display-6'>
-          Shopping Cart: You have a total of {cartArray.length} item(s) to
-          checkout! <br />
-          <Link href='/member/checkout'>
-            <a>
-              <button type='button' className='btn btn-success btn-lg'>
-                Take Me To Checkout!
-              </button>
-            </a>
-          </Link>
-        </h1>
+    <div>
+      <h1 className='text-center p-3 display-6'>
+        Shopping Cart: You have a total of {cartArray.length} item(s) to
+        checkout! <br />
+        <Link href='/member/checkout'>
+          <a>
+            <button type='button' className='btn btn-success btn-lg'>
+              Take Me To Checkout!
+            </button>
+          </a>
+        </Link>
+      </h1>
 
-        {loading ? (
-          <p className='placeholder-glow p-5'>
-            Loading...
-            <span className='placeholder col-12'></span>
-          </p>
-        ) : (
-          <div className='container'>
-            {cartArray.map(
-              (
-                cartitem: {
-                  quantity: number;
-                  Goods_id: number;
-                  id: number;
-                  image_url: string;
-                  title: string;
-                  price: number;
-                },
-                index: number
-              ) => (
-                <div className='container' key={index}>
-                  <Formik
-                    initialValues={{
-                      quantity: cartitem?.quantity,
-                      User_id: userDetails.id,
-                      Goods_id: cartitem?.Goods_id,
-                      cartItem_id: cartitem?.id,
-                      // purchase_price: cartitem.price,
-                    }}
-                    validationSchema={CartValidation}
-                    onSubmit={(values) => handleEditCart(values)}
-                    onReset={(values) => handleRemoveCartItem(values)}>
-                    {({
-                      handleChange,
-                      handleBlur,
-                      values,
-                      errors,
-                      touched,
-                      initialValues,
-                    }) => (
-                      <div>
-                        <div
-                          key={index}
-                          className='card mb-3 mx-auto'
-                          style={{ maxWidth: "700px" }}>
-                          <div className='row g-0'>
-                            <div className='col-md-4 p-2'>
-                              <img
-                                src={cartitem.image_url}
-                                alt='image'
-                                className='img-fluid rounded-start'
-                              />
+      {loading ? (
+        <p className='placeholder-glow p-5'>
+          Loading...
+          <span className='placeholder col-12'></span>
+        </p>
+      ) : (
+        <div className='container'>
+          {cartArray.map(
+            (
+              cartitem: {
+                quantity: number;
+                Goods_id: number;
+                id: number;
+                image_url: string;
+                title: string;
+                price: number;
+              },
+              index: number
+            ) => (
+              <div className='container' key={index}>
+                <Formik
+                  initialValues={{
+                    quantity: cartitem?.quantity,
+                    User_id: userDetails.id,
+                    Goods_id: cartitem?.Goods_id,
+                    cartItem_id: cartitem?.id,
+                    // purchase_price: cartitem.price,
+                  }}
+                  validationSchema={CartValidation}
+                  onSubmit={(values) => handleEditCart(values)}
+                  onReset={(values) => handleRemoveCartItem(values)}>
+                  {({
+                    handleChange,
+                    handleBlur,
+                    values,
+                    errors,
+                    touched,
+                    initialValues,
+                  }) => (
+                    <div>
+                      <div
+                        key={index}
+                        className='card mb-3 mx-auto'
+                        style={{ maxWidth: "700px" }}>
+                        <div className='row g-0'>
+                          <div className='col-md-4 p-2'>
+                            <img
+                              src={cartitem.image_url}
+                              alt='image'
+                              className='img-fluid rounded-start'
+                            />
+                          </div>
+                          <div className='col-md-8 p-2'>
+                            <div className='card-text'>
+                              <h4 className='card-title'>
+                                Title: {cartitem.title}
+                              </h4>
                             </div>
-                            <div className='col-md-8 p-2'>
-                              <div className='card-text'>
-                                <h4 className='card-title'>
-                                  Title: {cartitem.title}
-                                </h4>
+                            <h5 className='card-text text-muted'>
+                              Price: ${cartitem.price}
+                            </h5>
+                            <Form>
+                              <label htmlFor='Quantity'>
+                                <h5>Quantity</h5>
+                              </label>
+                              <div>
+                                <Field
+                                  id='quantity'
+                                  name='quantity'
+                                  type='number'
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  value={values.quantity}
+                                  placeholder='0'
+                                  min={0}
+                                  max={5}
+                                />
+                                {errors.quantity && touched.quantity ? (
+                                  <div>{errors.quantity}</div>
+                                ) : null}
                               </div>
-                              <h5 className='card-text text-muted'>
-                                Price: ${cartitem.price}
-                              </h5>
-                              <Form>
-                                <label htmlFor='Quantity'>
-                                  <h5>Quantity</h5>
-                                </label>
-                                <div>
-                                  <Field
-                                    id='quantity'
-                                    name='quantity'
-                                    type='number'
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.quantity}
-                                    placeholder='0'
-                                    min={0}
-                                    max={5}
-                                  />
-                                  {errors.quantity && touched.quantity ? (
-                                    <div>{errors.quantity}</div>
-                                  ) : null}
-                                </div>
-                                <br />
-                                {updating ? (
-                                  <button
-                                    className='btn btn-outline-dark mb-3'
-                                    style={{ backgroundColor: "#5BB318" }}
-                                    type='button'
-                                    disabled>
-                                    <span
-                                      className='spinner-border spinner-border-sm'
-                                      role='status'
-                                      aria-hidden='true'></span>
-                                    Loading...
-                                  </button>
-                                ) : (
-                                  <button
-                                    type='submit'
-                                    className='btn btn-outline-dark mb-3'
-                                    style={{ backgroundColor: "#5BB318" }}
-                                    disabled={
-                                      !(
-                                        Object.keys(errors).length === 0 &&
-                                        Object.keys(touched).length !== 0
-                                      )
-                                    }>
-                                    Update Quantity
-                                  </button>
-                                )}
-
-                                {!cartEdited && (
-                                  <p>
-                                    Failed to Update quantity. Please try again.
-                                  </p>
-                                )}
-                                <br />
-                                <button type='reset' className='btn btn-danger'>
-                                  Remove Item
-                                </button>
-                              </Form>
                               <br />
-                            </div>
+                              {updating ? (
+                                <button
+                                  className='btn btn-outline-dark mb-3'
+                                  style={{ backgroundColor: "#5BB318" }}
+                                  type='button'
+                                  disabled>
+                                  <span
+                                    className='spinner-border spinner-border-sm'
+                                    role='status'
+                                    aria-hidden='true'></span>
+                                  Loading...
+                                </button>
+                              ) : (
+                                <button
+                                  type='submit'
+                                  className='btn btn-outline-dark mb-3'
+                                  style={{ backgroundColor: "#5BB318" }}
+                                  disabled={
+                                    !(
+                                      Object.keys(errors).length === 0 &&
+                                      Object.keys(touched).length !== 0
+                                    )
+                                  }>
+                                  Update Quantity
+                                </button>
+                              )}
+
+                              {!cartEdited && (
+                                <p>
+                                  Failed to Update quantity. Please try again.
+                                </p>
+                              )}
+                              <br />
+                              <button type='reset' className='btn btn-danger'>
+                                Remove Item
+                              </button>
+                            </Form>
+                            <br />
                           </div>
                         </div>
                       </div>
-                    )}
-                  </Formik>
-                </div>
-              )
-            )}
-          </div>
-        )}
-      </div>
-    </Layout>
+                    </div>
+                  )}
+                </Formik>
+              </div>
+            )
+          )}
+        </div>
+      )}
+    </div>
   );
 }

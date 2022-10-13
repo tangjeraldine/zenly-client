@@ -1,4 +1,4 @@
-import Layout from "../../components/LayoutLogin";
+
 import urlcat from "urlcat";
 import axios from "axios";
 import { Field, Formik, Form } from "formik";
@@ -84,7 +84,7 @@ export default function MemberSales() {
   const name = userDetails.full_name.split(" ")[0];
 
   return (
-    <Layout home>
+    <div>
       {loading ? (
         <p className='placeholder-glow p-5'>
           Loading...
@@ -216,6 +216,6 @@ export default function MemberSales() {
           </div>
         </div>
       )}
-    </Layout>
+    </div>
   );
 }

@@ -1,4 +1,3 @@
-import Layout from "../../components/LayoutLogin";
 import urlcat from "urlcat";
 import axios from "axios";
 import { AuthContext } from "../../components/AuthContext";
@@ -57,7 +56,7 @@ export default function MemberSales() {
   }
 
   return (
-    <Layout home>
+    <div>
       {loading ? (
         <p className='placeholder-glow p-5'>
           Loading...
@@ -108,6 +107,6 @@ export default function MemberSales() {
           </div>
         </div>
       )}
-    </Layout>
+    </div>
   );
 }

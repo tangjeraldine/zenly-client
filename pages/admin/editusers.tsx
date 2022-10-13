@@ -1,4 +1,3 @@
-import Layout from "../../components/LayoutAdmin";
 import { AuthContext } from "../../components/AuthContext";
 import urlcat from "urlcat";
 import axios from "axios";
@@ -69,43 +68,41 @@ export default function EditUsers() {
   };
 
   return (
-    <Layout home>
-      <div>
-        <h3 className='text-center display-6'>Search for a user to edit: </h3>
-        <br />
-        <div className='input-group mb-3'>
-          <span className='input-group-text' id='inputGroup-sizing-default'>
-            Name of User <em>(case sensitive, full name only)</em>
-          </span>
-          <input
-            type='text'
-            className='form-control'
-            aria-label='Sizing example input'
-            aria-describedby='inputGroup-sizing-default'
-            onChange={handleName}
-          />
-        </div>
-        <button
-          type='button'
-          className='btn btn-dark'
-          onClick={handleSearchUserByName}>
-          Search
-        </button>
-        <br />
-        <hr />
-        {userData.map((each, index) => (
-          <div key={index}>
-            <h5>Name: {each.full_name}</h5>
-            <button onClick={() => handleDelete(each.id)}>Delete User</button>
-            <br />
-            <hr />
-            <input type='number' onChange={handleChangeStatus} />
-            <button onClick={() => handleSuspend(each.id)}>
-              Change User Access
-            </button>
-          </div>
-        ))}
+    <div>
+      <h3 className='text-center display-6'>Search for a user to edit: </h3>
+      <br />
+      <div className='input-group mb-3'>
+        <span className='input-group-text' id='inputGroup-sizing-default'>
+          Name of User <em>(case sensitive, full name only)</em>
+        </span>
+        <input
+          type='text'
+          className='form-control'
+          aria-label='Sizing example input'
+          aria-describedby='inputGroup-sizing-default'
+          onChange={handleName}
+        />
       </div>
-    </Layout>
+      <button
+        type='button'
+        className='btn btn-dark'
+        onClick={handleSearchUserByName}>
+        Search
+      </button>
+      <br />
+      <hr />
+      {userData.map((each, index) => (
+        <div key={index}>
+          <h5>Name: {each.full_name}</h5>
+          <button onClick={() => handleDelete(each.id)}>Delete User</button>
+          <br />
+          <hr />
+          <input type='number' onChange={handleChangeStatus} />
+          <button onClick={() => handleSuspend(each.id)}>
+            Change User Access
+          </button>
+        </div>
+      ))}
+    </div>
   );
 }
