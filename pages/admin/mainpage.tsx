@@ -12,11 +12,6 @@ export default function AdminMain() {
   const { userDetails } = useContext(AuthContext);
   const [pendingOrders, setPendingOrders] = useState([] as any[]);
 
-  if (userDetails?.security_lvl !== 2) {
-    return <ErrorPage />;
-  }
-  const name = userDetails.full_name.split(" ")[0];
-
   useEffect(() => {
     const urlAllPendingOrders = urlcat(SERVER, `admin/allpendingorders/`);
     axios
@@ -29,6 +24,11 @@ export default function AdminMain() {
         console.log(error);
       });
   }, []);
+
+  if (userDetails?.security_lvl !== 2) {
+    return <ErrorPage />;
+  }
+  const name = userDetails.full_name.split(" ")[0];
 
   return (
     <Layout home>

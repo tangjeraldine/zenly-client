@@ -15,11 +15,6 @@ export default function AdminMain() {
   const { userDetails, setEditGoodsDets } = useContext(AuthContext);
   const [allGoods, setAllGoods] = useState([] as any[]);
 
-  if (userDetails?.security_lvl !== 2) {
-    return <ErrorPage />;
-  }
-  const name = userDetails.full_name.split(" ")[0];
-
   useEffect(() => {
     const urlDisplayAllGoods = urlcat(SERVER, `admin/viewgoodslist/`);
     axios
@@ -32,6 +27,11 @@ export default function AdminMain() {
         console.log(error);
       });
   }, []);
+
+  if (userDetails?.security_lvl !== 2) {
+    return <ErrorPage />;
+  }
+  const name = userDetails.full_name.split(" ")[0];
 
   const handleSetGoodsDetails = (id: number) => {
     const urlDisplayThisGood = urlcat(SERVER, `admin/viewgoodslist/${id}`);

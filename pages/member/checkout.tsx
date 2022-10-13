@@ -198,7 +198,7 @@ export default function MemberSales() {
                   </div>
                 ))
               ) : (
-                <h1>We've received your order!</h1>
+                <h1>We&apos;ve received your order!</h1>
               )}
             </div>
           </div>

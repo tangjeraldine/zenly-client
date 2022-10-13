@@ -15,11 +15,6 @@ export default function AdminMain() {
   const { userDetails, setViewBuyer } = useContext(AuthContext);
   const [allSortedOrders, setAllSortedOrders] = useState([] as any[]);
 
-  if (userDetails?.security_lvl !== 2) {
-    return <ErrorPage />;
-  }
-  const name = userDetails.full_name.split(" ")[0];
-
   useEffect(() => {
     const urlAllSortedOrders = urlcat(SERVER, `admin/displayallorders/`);
     axios
@@ -32,6 +27,11 @@ export default function AdminMain() {
         console.log(error);
       });
   }, []);
+
+  if (userDetails?.security_lvl !== 2) {
+    return <ErrorPage />;
+  }
+  const name = userDetails.full_name.split(" ")[0];
 
   let newSortedOrders = [] as any[];
   for (const eachOrder of allSortedOrders) {
