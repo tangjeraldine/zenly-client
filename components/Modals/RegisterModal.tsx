@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import Router from "next/router";
+import Router from "next/router";
 import urlcat from "urlcat";
 import { Field, Formik, Form } from "formik";
 import axios from "axios";
@@ -13,14 +13,13 @@ export default function RegisterModal() {
   const [open, setOpen] = useState(false);
   const [registrationSuccessful, setRegistrationSuccessful] = useState(true);
 
-  const handleRegisterNew = (values: object, event: any) => {
-    event.preventDefault();
+  const handleRegisterNew = (values: object) => {
     const url = urlcat(SERVER, "/sign/newuser");
     axios
       .post(url, values)
       .then(({ data }) => {
         setRegistrationSuccessful(true);
-        // Router.push("/login/redirect");
+        Router.push("/login/redirect");
         alert("Your account has been created! Please log in.");
       })
       .catch((error) => {
