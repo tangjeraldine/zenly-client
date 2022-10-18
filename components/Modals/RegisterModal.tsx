@@ -67,7 +67,7 @@ export default function RegisterModal() {
                 gender: "",
               }}
               validationSchema={RegisterValidation}
-              onSubmit={(values, event) => handleRegisterNew(values)}>
+              onSubmit={(values) => handleRegisterNew(values)}>
               {({
                 handleChange,
                 handleBlur,
